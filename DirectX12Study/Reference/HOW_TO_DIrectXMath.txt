@@ -1,0 +1,66 @@
+XMVECTOR
+클래스 자료변수로 이용할 때에는 XMFLOAT2, XMFLOAT3, XMFLOAT4등으로 이용 추천
+
+XMVECTOR 설정 참고로 함수들 전부 XM_CALLCONV 달려있음
+XMVector XMVectorZero(); 0으로 이루어진 벡터 리턴
+XMVector XMVectorSplatOne(); 1로 이루어진 벡터 리턴
+XMVector XMVectorSet(float x, float y, float z, float w); x, y, z, w로 된 벡터 리턴
+XMVector XMVectorReplicate(float Value); value로 이루어진 벡터 리턴
+XMVector XMvectorSplatX(FXMVECTOR v); v.x로 이루어진 벡터 리턴
+XMVector XMvectorSplatY(FXMVECTOR v); v.y로 이루어진 벡터 리턴
+XMVector XMvectorSplatZ(FXMVECTOR v); v.z로 이루어진 벡터 리턴
+
+XMVECTOR 연산
+XMVECTOR XMVector3Length(FXMVECTOR V);																				V의 길이 리턴
+XMVECTOR XMVector3LengthSq(FXMVECTOR V);																			V의 길이 ^2 리턴
+XMVECTOR XMVector3Dot(FXMVECTOR V1, FXMVECTOR V2);																	V1과 V2의 내적 리턴(V1 길이 * V2 길이 * cos)
+XMVECTOR XMVector3Cross(FXMVECTOR V1, FXMVECTOR V2);																V1과 V2의 외적 리턴(V1y*v2z - v1z*v2y, v1z*v2x - v1x*v2z, v1x*v2y - v1y*v2z)
+XMVECTOR XMVector3Normalize(FXMVECTOR V);																			V 정규화(V / V길이)
+XMVECTOR XMVector3Orthogonal(FXMVECTOR V);																			V에 수직인 벡터
+XMVECTOR XMVector3AngleBetweenVectors(FXMVECTOR V1, FXMVECTOR V2);													V1과 V2사이의 각도 리턴
+void XMVector3ComponentsFromNormal(XMVECTOR* pParellel, XMVECTOR* pPerpendicular, FXMVECTOR V, FXMVECTOR normal);	v와 n을 넣어주면 Projn(v)와 perpn(v)를 리턴
+bool XMVector3Equal(FXMVECTOR V1, FXMVECTOR V2);																	v1 == v2 리턴
+bool XMVector3NotEqual(FXMVECTOR V1, FXMVECTOR V2);																	v1 != v2 리턴
+내적이나 길이같이 값이 하나인 경우에도 XMVECTOR로 리턴하는데, 모든 값이 해당 값으로 복제되있다고 한다.
+연산 함수들은 이름 뒤에 Est를 붙이는 것으로 속도는 빠르지만 계산이 덜 정확한 추정 함수(estimation function)이 된다.
+
+XMVECTOR 특수 연산
+XMVECTOR XMVectorAbs(FXMVECTOR V)																					V의 절대값 리턴
+XMVECTOR XMVectorCos(FXMVECTOR V)																					V의 코사인값 리턴
+XMVECTOR XMVectorLog(FXMVECTOR V)																					V의 로그2 취한값 리턴
+XMVECTOR XMVectorExp(FXMVECTOR V)																					V의 역로그2 취한값 리턴
+XMVECTOR XMVectorPow(FXMVECTOR V1, FXMVECTOR V2)																	V1^V2 취한값 리턴
+XMVECTOR XMVectorSqrt(FXMVECTOR V)																					V에 루트 취한값 리턴
+XMVECTOR XMVectorSwizzle(FXMVECTOR V, uint e1, uint e2, uint e3, uint e4)											V의 e1,e2,e3,e4번째 값을 해당 자리에 둔 벡터 리턴  
+XMVECTOR XMVectorMultiply(FXMVECTOR V1, FXMVECTOR V2)																V1 * V2 리턴
+XMVECTOR XMVectorSaturate(FXMVECTOR V)																				V의 값을 0과 1사이로 맞추고 리턴(0보다 작으면 0, 1보다 크면 1)
+XMVECTOR XMVectorMin(FXMVECTOR V1, FXMVECTOR V2)																	V1과 V2중 작은 쪽 리턴
+XMVECTOR XMVectorMax(FXMVECTOR V1, FXMVECTOR V2)																	V1과 V2중 큰 쪽 리턴
+
+
+
+XMMATRIX
+
+XMMATRIX는 기본적으로 4X4 형태라서 초기화를 XMVECTOR 4개로 하거나 부동소수점 16개로 하거나 부동소수점 배열로 초기화 가능함
+기본으로 있는 operator는 =, +, -, *, /, +=, -=, *=, /= 단 *와 /는 행렬과 행렬간의 연산이 아닌 실수와 행렬간의 연산임, XMVECTOR처럼 XMMatrixSet 함수로 부동소수점 16개를 넣어줄 수 있음
+클래스 자료멤버로 저장할 때에는 XMFLOAT4X4 사용 추천, XMMATRIX에 XMFLOAT4X4 넣을때는 XMLoadFloat4x4(const XMFLOAT4X4* pSource), 반대로 넣을때는 XMStoreFloat44(XMFLOAT4X4* pDest, FXMMATRIX M);
+
+행렬함수
+XMMATRIX XMMatrixIdentity();																						단위행렬 리턴
+bool XMMatrixIsIdentity(FXMMATRIX M);																				M이 단위행렬인지 여부
+XMMATRIX XMMatrixMultiply(FXMMATRIX A, CXMMATRIX B);																A * B행렬
+XMMATRIX XMMatrixTranspose(FXMMATRIX M);																			M의 전치행렬
+XMVECTOR XMMatrixDeterminant(FXMMATRIX M);																			M의 det M 값을 XMVECTOR 전체 인자에 넣어서 리턴
+XMMATRIX XMMatrixInverse(XMVECTOR* pDeterminant, FXMMATRIX M);														M의 역행렬 리턴, pDeterminant에는 det M값들
+
+아핀 변환
+XMMATRIX XMMatrixScaliing(float ScaleX, float ScaleY, float ScaleZ);												인자값에 맞춘 비례행렬 생성
+XMMatrix XMMatrixScalingFromVector(FXMVECTOR Scale);																벡터값에 맞춘 비례행렬 생성
+XMMatrix XMMatrixRotationX(float Angle);																			인자값에 맞춘 X축 기준 회전행렬 생성
+XMMatrix XMMatrixRotationY(float Angle);																			인자값에 맞춘 Y축 기준 회전행렬 생성
+XMMatrix XMMatrixRotationZ(float Angle);																			인자값에 맞춘 Z축 기준 회전행렬 생성
+XMMatrix XMMatrixRotationAxis(FXMVECTOR Axis, float Angle);															인자값에 맞춘 주어진 축 기준 회전행렬 생성
+XMMatrix XMMatrixTranslation(float OffsetX, float OffsetY, float OffsetZ);											인자값에 맞춘 이동행렬 생성
+XMMATRIX XMMatrixTranslationFromVector(FXMVETOR Offset);															벡터값에 맞춘 이동행렬 생성
+XMVECTOR XMVector3TransformCoord(FXMVECTOR V, CXMMATRIX M);															벡터와 행렬 곱 (W = 1)
+XMVECTOR XMVector3TransformCoordFromNormal(FXMVECTOR V, CXMMATRIX M);												점과 행렬 곱	(W = 0)

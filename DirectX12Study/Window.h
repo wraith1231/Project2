@@ -1,7 +1,5 @@
 #pragma once
 
-//typedef HINSTNACE_* HINSTANCE;
-
 struct WindowDesc
 {
 	HINSTANCE hInstance;
@@ -16,14 +14,9 @@ public:
 	Window();
 	~Window();
 
-	bool Init(int show);//HINSTANCE instanceHandle, int show);
+	bool Init(int show);
 	int Update();
 	void Delete();
-
-	//LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-
-	//HWND GetGHMainWnd() { return ghMainWnd; }
-	//HINSTANCE GetHInstance() { return hInstance; }
 
 	WindowDesc GetDesc() { return _desc; }
 	void SetDesc(WindowDesc desc);
@@ -31,7 +24,5 @@ public:
 
 private:
 	WindowDesc _desc;
-	//HWND ghMainWnd;
-	//HINSTANCE hInstance;
 };
 

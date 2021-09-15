@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{e43a598a-22ec-4b1d-9678-5ee8a8c0f933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Header">
+      <UniqueIdentifier>{7fa9f5b7-972b-47b9-a9fb-91111e2b1128}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Code">
+      <UniqueIdentifier>{0be4ab30-0067-40cd-b2f6-dfcec80bf833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reference">
+      <UniqueIdentifier>{92ce2fae-b903-4e63-8d1f-c6f1d8755ea3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SingletonManager.h">
+      <Filter>System\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>System\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Reference\XMMatrixTest.h">
+      <Filter>Reference</Filter>
+    </ClInclude>
+    <ClInclude Include="Reference\XMVectorTest.h">
+      <Filter>Reference</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SingletonManager.cpp">
+      <Filter>System\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>System\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Reference\XMMatrixTest.cpp">
+      <Filter>Reference</Filter>
+    </ClCompile>
+    <ClCompile Include="Reference\XMVectorTest.cpp">
+      <Filter>Reference</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Reference\HOW_TO_DIrectXMath.txt">
+      <Filter>Reference</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

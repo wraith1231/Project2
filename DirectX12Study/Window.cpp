@@ -3,15 +3,14 @@
 
 Window::Window()
 {
-	//ghMainWnd = 0;
-	//hInstance = nullptr;
+
 }
 
 Window::~Window()
 {
 }
 
-bool Window::Init(int show)//HINSTANCE instanceHandle, int show)
+bool Window::Init(int show)
 {
 	WNDCLASS wc;
 	wc.style = CS_HREDRAW | CS_VREDRAW;
@@ -23,7 +22,7 @@ bool Window::Init(int show)//HINSTANCE instanceHandle, int show)
 	wc.hCursor = LoadCursorW(0, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	wc.lpszMenuName = 0;
-	wc.lpszClassName = L"Window Class";
+	wc.lpszClassName = L"DirectX12";
 
 	if (RegisterClass(&wc) == false)
 	{
@@ -85,7 +84,3 @@ void Window::SetDesc(WindowDesc desc)
 	_desc.hInstance = desc.hInstance;
 	_desc.ghMainWnd = desc.ghMainWnd;
 }
-
-//LRESULT Windows::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-//{
-//}

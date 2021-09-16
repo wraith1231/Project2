@@ -6,6 +6,10 @@
 #include <iostream>
 #include <stdio.h>
 #include <Windows.h>
+#include <chrono>
+#include <cstdint>
+#include <thread>
+#include <time.h>
 
 #include <d3d12.h>
 #include <d3d12shader.h>

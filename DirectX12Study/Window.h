@@ -6,6 +6,7 @@ struct WindowDesc
 	HWND ghMainWnd;
 	int Width = 1080;
 	int Height = 720;
+	int MaxFPS = 60;
 };
 
 class Window

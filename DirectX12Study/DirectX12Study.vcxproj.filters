@@ -32,6 +32,9 @@
     <ClInclude Include="Reference\XMVectorTest.h">
       <Filter>Reference</Filter>
     </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>System\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -46,6 +49,9 @@
     </ClCompile>
     <ClCompile Include="Reference\XMVectorTest.cpp">
       <Filter>Reference</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>System\Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

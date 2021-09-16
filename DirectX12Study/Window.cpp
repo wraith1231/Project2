@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Window.h"
+#include "SingletonManager.h"
+#include "Time.h"
 
 Window::Window()
 {
@@ -20,7 +22,7 @@ bool Window::Init(int show)
 	wc.hInstance = _desc.hInstance;
 	wc.hIcon = LoadIcon(0, IDI_APPLICATION);
 	wc.hCursor = LoadCursorW(0, IDC_ARROW);
-	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	wc.hbrBackground = (HBRUSH)GetStockObject(GRAY_BRUSH);
 	wc.lpszMenuName = 0;
 	wc.lpszClassName = L"DirectX12";
 
@@ -58,6 +60,37 @@ int Window::Update()
 {
 	MSG msg = { 0 };
 
+	clock_t now;
+
+	while (msg.message != WM_QUIT)
+	{
+		clock_t now = clock();
+		float last = SingletonManager::Singleton()->GetTime()->GetLastTime();
+		float delta = SingletonManager::Singleton()->GetTime()->GetDeltaTime();
+		float delta2 = (float)(now - last);
+
+		SingletonManager::Singleton()->GetTime()->AddDeltaTime(delta2);
+		SingletonManager::Singleton()->GetTime()->SetLastTime(now);
+		float currentFrame = delta + delta2;
+		if (currentFrame < (float)_desc.MaxFPS / 1000.0f)
+		{
+			continue;
+		}
+
+		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE) == TRUE)
+		{
+			//message 입력이 있는 경우
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		else
+		{
+			//Message 입력이 없는 경우
+		}
+	}
+	return (int)msg.wParam;
+
+	/* 
 	BOOL bRet = 1;
 	while (bRet = GetMessage(&msg, 0, 0, 0) != 0)
 	{
@@ -73,6 +106,7 @@ int Window::Update()
 		}
 	}
 	return (int)msg.wParam;
+	*/
 }
 
 void Window::Delete()

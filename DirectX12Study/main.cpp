@@ -29,8 +29,6 @@ ostream& XM_CALLCONV operator<<(ostream& os, FXMMATRIX m)
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, INT nShowCmd)
 {
-	SingletonManager::Singleton()->Init();
-
 	WindowDesc desc;
 	desc.hInstance = hInstance;
 	SingletonManager::Singleton()->GetWindow()->SetDesc(desc);
@@ -46,6 +44,7 @@ LRESULT WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_LBUTTONDOWN:
+
 		return 0;
 	case WM_KEYDOWN:
 		if (wParam == VK_ESCAPE)

@@ -24,6 +24,8 @@ using namespace std;
 using namespace DirectX;
 using namespace DirectX::PackedVector;
 
+namespace ch = std::chrono;
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 #pragma once 

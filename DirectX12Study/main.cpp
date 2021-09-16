@@ -29,6 +29,7 @@ ostream& XM_CALLCONV operator<<(ostream& os, FXMMATRIX m)
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, INT nShowCmd)
 {
+	
 	WindowDesc desc;
 	desc.hInstance = hInstance;
 	SingletonManager::Singleton()->GetWindow()->SetDesc(desc);

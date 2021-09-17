@@ -10,6 +10,9 @@
 #include <cstdint>
 #include <thread>
 #include <time.h>
+#include <vector>
+#include <map>
+
 
 #include <d3d12.h>
 #include <d3d12shader.h>

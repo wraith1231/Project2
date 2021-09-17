@@ -1,22 +1,27 @@
 #pragma once
+#include "Singletons.h"
 
 struct WindowDesc
 {
 	HINSTANCE hInstance;
 	HWND ghMainWnd;
-	int Width = 1080;
-	int Height = 720;
+	int x = 150;
+	int y = 90;
+	int Width = 1600;
+	int Height = 900;
 	int MaxFPS = 60;
 };
 
-class Window
+class Window : public Singletons
 {
 public:
 	Window();
 	~Window();
 
 	bool Init(int show);
-	int Update();
+	void Init();
+	int Run();
+	void Update();
 	void Delete();
 
 	WindowDesc GetDesc() { return _desc; }

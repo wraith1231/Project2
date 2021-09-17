@@ -148,6 +148,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="SingletonManager.h" />
+    <ClInclude Include="Singletons.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Window.h" />

@@ -1,16 +1,55 @@
 #include "stdafx.h"
 #include "SingletonManager.h"
+#include "Singletons.h"
 #include "Window.h"
 #include "Time.h"
 
 SingletonManager::SingletonManager()
 {
-	_time = nullptr;
-	_window = nullptr;
 }
 
 SingletonManager::~SingletonManager()
 {
+}
+
+void SingletonManager::Init()
+{
+	map<string, Singletons*>::iterator iter = _Singletons.begin();
+	for (; iter != _Singletons.end(); ++iter)
+	{
+		iter->second->Init();
+	}
+}
+
+void SingletonManager::Update()
+{
+	map<string, Singletons*>::iterator iter = _Singletons.begin();
+	for (; iter != _Singletons.end(); ++iter)
+	{
+		iter->second->Update();
+	}
+}
+
+void SingletonManager::Delete()
+{
+	map<string, Singletons*>::iterator iter = _Singletons.begin();
+	for (; iter != _Singletons.end(); ++iter)
+	{
+		iter->second->Delete();
+	}
+}
+
+void SingletonManager::AddSingleton(string name, Singletons* sin)
+{
+	if (sin == nullptr)
+		return;
+
+	_Singletons[name] = sin;
+}
+
+Singletons* SingletonManager::GetSingleton(string name)
+{
+	return _Singletons[name];
 }
 
 SingletonManager* SingletonManager::Singleton()
@@ -19,19 +58,9 @@ SingletonManager* SingletonManager::Singleton()
 	{
 		h_instance = new SingletonManager();
 
-		h_instance->_window = new Window();
-		h_instance->_time = new Time();
+		h_instance->AddSingleton("Window", new Window());
+		h_instance->AddSingleton("Time", new Time());
 	}
 
 	return h_instance;
-}
-
-Window* SingletonManager::GetWindow()
-{
-	return _window;
-}
-
-Time* SingletonManager::GetTime()
-{
-	return _time;
 }

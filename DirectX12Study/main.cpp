@@ -37,7 +37,9 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 	if(SingletonManager::Singleton()->GetWindow()->Init(nShowCmd)==false)
 		return 0;
 
-	return SingletonManager::Singleton()->GetWindow()->Update();
+	SingletonManager::Singleton()->Init();
+
+	return SingletonManager::Singleton()->GetWindow()->Run();
 }
 
 LRESULT WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)

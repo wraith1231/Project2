@@ -6,6 +6,7 @@
 Window::Window()
 {
 
+
 }
 
 Window::~Window()
@@ -36,8 +37,8 @@ bool Window::Init(int show)
 		L"DirectX12",
 		L"DirectX12",
 		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT,
-		CW_USEDEFAULT,
+		_desc.x,
+		_desc.y,
 		_desc.Width,
 		_desc.Height,
 		0, 0,
@@ -56,35 +57,24 @@ bool Window::Init(int show)
 	return true;
 }
 
-int Window::Update()
+void Window::Init()
+{
+}
+
+int Window::Run()
 {
 	MSG msg = { 0 };
 
-	//clock_t now;
 	ch::time_point<ch::high_resolution_clock> now = ch::high_resolution_clock::now();
+
 	ch::time_point<ch::high_resolution_clock> last;
 	ch::nanoseconds diff;
 	float delta;
 	while (msg.message != WM_QUIT)
 	{
-		//now = clock();
-		//
-		//float last = SingletonManager::Singleton()->GetTime()->GetLastTime();
-		//float delta = SingletonManager::Singleton()->GetTime()->GetDeltaTime();
-		//float delta2 = (float)(now - last);
-		//
-		//SingletonManager::Singleton()->GetTime()->AddDeltaTime(delta2);
-		//SingletonManager::Singleton()->GetTime()->SetLastTime((float)now);
-		//float currentFrame = delta + delta2;
-		//if (currentFrame < (float)_desc.MaxFPS / 1000.0f)
-		//{
-		//	continue;
-		//}
-
 		last = ch::high_resolution_clock::now();
 		diff = last - now;
-		//auto diff = last - now;
-		delta = ch::duration_cast<ch::milliseconds>(diff).count();
+		delta = (float)ch::duration_cast<ch::milliseconds>(diff).count();
 
 
 		if (delta < (1 / (float)_desc.MaxFPS) * 1000)
@@ -103,8 +93,11 @@ int Window::Update()
 		else
 		{
 			//Message 입력이 없는 경우
+			SingletonManager::Singleton()->Update();
 		}
 	}
+
+	SingletonManager::Singleton()->Delete();
 	return (int)msg.wParam;
 
 	/* 
@@ -124,6 +117,10 @@ int Window::Update()
 	}
 	return (int)msg.wParam;
 	*/
+}
+
+void Window::Update()
+{
 }
 
 void Window::Delete()

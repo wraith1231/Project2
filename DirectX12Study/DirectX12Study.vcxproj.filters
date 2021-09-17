@@ -35,6 +35,9 @@
     <ClInclude Include="Time.h">
       <Filter>System\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Singletons.h">
+      <Filter>System\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">

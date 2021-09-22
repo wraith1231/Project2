@@ -82,7 +82,7 @@ int Window::Run()
 			continue;
 		}
 		now = last;
-		SingletonManager::Singleton()->GetTime()->SetDeltaTime(delta);
+		Singleton<Time>("Time")->SetDeltaTime(delta);
 
 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE) == TRUE)
 		{

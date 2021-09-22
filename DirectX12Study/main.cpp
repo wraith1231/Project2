@@ -32,14 +32,14 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 	
 	WindowDesc desc;
 	desc.hInstance = hInstance;
-	SingletonManager::Singleton()->GetWindow()->SetDesc(desc);
+	Singleton<Window>("Window")->SetDesc(desc);
 
-	if(SingletonManager::Singleton()->GetWindow()->Init(nShowCmd)==false)
+	if (Singleton<Window>("Window")->Init(nShowCmd) == false)
 		return 0;
 
 	SingletonManager::Singleton()->Init();
 
-	return SingletonManager::Singleton()->GetWindow()->Run();
+	return Singleton<Window>("Window")->Run();
 }
 
 LRESULT WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)

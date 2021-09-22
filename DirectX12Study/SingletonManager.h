@@ -26,4 +26,10 @@ private:
 	map<string, Singletons*> _Singletons;
 };
 
-static SingletonManager* h_instance;
+static SingletonManager* h_instance = 0;
+
+template <typename T>
+T* Singleton(string str)
+{
+	return (T*)SingletonManager::Singleton()->GetSingleton(str);
+}

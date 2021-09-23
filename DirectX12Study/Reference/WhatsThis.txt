@@ -1,0 +1,1 @@
+::OutputDebugString(LTWSTR) 디버그시 출력부분에 ltwstr 넣어줌

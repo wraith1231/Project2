@@ -3,10 +3,7 @@
 
 Time::Time()
 {
-	clock_t start = clock();
-	_startTime = ch::high_resolution_clock::now();
-	_deltaTime = 0;
-	_lastTime = ch::high_resolution_clock::now();
+	Init();
 }
 
 Time::~Time()
@@ -15,6 +12,10 @@ Time::~Time()
 
 void Time::Init()
 {
+	clock_t start = clock();
+	_startTime = ch::high_resolution_clock::now();
+	_deltaTime = 0;
+	_lastTime = ch::high_resolution_clock::now();
 }
 
 void Time::Update()

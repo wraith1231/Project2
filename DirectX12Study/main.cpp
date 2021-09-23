@@ -51,7 +51,7 @@ LRESULT WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		return 0;
 	case WM_KEYDOWN:
 		if (wParam == VK_ESCAPE)
-			DestroyWindow(SingletonManager::Singleton()->GetWindow()->GetDesc().ghMainWnd);
+			DestroyWindow(Singleton<Window>("Window")->GetDesc().ghMainWnd);
 		return 0;
 	case WM_DESTROY:
 		PostQuitMessage(0);

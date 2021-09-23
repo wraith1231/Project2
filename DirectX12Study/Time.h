@@ -7,9 +7,9 @@ public:
 	Time();
 	~Time();
 
-	void Init();
-	void Update();
-	void Delete();
+	virtual void Init() override;
+	virtual void Update() override;
+	virtual void Delete() override;
 
 	float GetDeltaTime() { return _deltaTime; }
 	void SetDeltaTime(float time) { _deltaTime = time; }

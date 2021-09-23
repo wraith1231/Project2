@@ -16,11 +16,8 @@ public:
 
 	void AddSingleton(string name, Singletons* sin);
 	Singletons* GetSingleton(string name);
-	//Singletons* operator[](string name) { return GetSingleton(name); }
-
+	
 	static SingletonManager* Singleton();
-	Window* GetWindow() { return (Window*)GetSingleton("Window"); }
-	Time* GetTime() { return (Time*)GetSingleton("Time"); }
 
 private:
 	map<string, Singletons*> _Singletons;

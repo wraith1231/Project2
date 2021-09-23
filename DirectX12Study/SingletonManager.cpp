@@ -14,11 +14,11 @@ SingletonManager::~SingletonManager()
 
 void SingletonManager::Init()
 {
-	map<string, Singletons*>::iterator iter = _Singletons.begin();
-	for (; iter != _Singletons.end(); ++iter)
-	{
-		iter->second->Init();
-	}
+	//map<string, Singletons*>::iterator iter = _Singletons.begin();
+	//for (; iter != _Singletons.end(); ++iter)
+	//{
+	//	iter->second->Init();
+	//}
 }
 
 void SingletonManager::Update()

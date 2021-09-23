@@ -38,6 +38,9 @@
     <ClInclude Include="Singletons.h">
       <Filter>System\Header</Filter>
     </ClInclude>
+    <ClInclude Include="D3D.h">
+      <Filter>System\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -56,9 +59,15 @@
     <ClCompile Include="Time.cpp">
       <Filter>System\Code</Filter>
     </ClCompile>
+    <ClCompile Include="D3D.cpp">
+      <Filter>System\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Reference\HOW_TO_DIrectXMath.txt">
+      <Filter>Reference</Filter>
+    </Text>
+    <Text Include="Reference\WhatsThis.txt">
       <Filter>Reference</Filter>
     </Text>
   </ItemGroup>

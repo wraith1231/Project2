@@ -19,10 +19,10 @@ public:
 	~Window();
 
 	bool Init(int show);
-	void Init();
 	int Run();
-	void Update();
-	void Delete();
+	virtual void Init() override;
+	virtual void Update() override;
+	virtual void Delete() override;
 
 	WindowDesc GetDesc() { return _desc; }
 	void SetDesc(WindowDesc desc);

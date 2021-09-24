@@ -82,7 +82,8 @@ int Window::Run()
 			continue;
 		}
 		now = last;
-		Singleton<Time>("Time")->SetDeltaTime(delta);
+		//Singleton<Time>("Time")->SetDeltaTime(delta);
+		Singleton<Time>()->SetDeltaTime(delta);
 
 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE) == TRUE)
 		{
@@ -99,24 +100,6 @@ int Window::Run()
 
 	SingletonManager::Singleton()->Delete();
 	return (int)msg.wParam;
-
-	/* 
-	BOOL bRet = 1;
-	while (bRet = GetMessage(&msg, 0, 0, 0) != 0)
-	{
-		if (bRet == -1)
-		{
-			MessageBox(0, L"Get Message FAILED", L"ERROR", MB_OK);
-			break;
-		}
-		else
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-	}
-	return (int)msg.wParam;
-	*/
 }
 
 void Window::Update()

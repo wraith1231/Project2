@@ -3,8 +3,8 @@
 
 struct WindowDesc
 {
-	HINSTANCE hInstance;
-	HWND ghMainWnd;
+	HINSTANCE hInstance = 0;
+	HWND ghMainWnd = 0;
 	int x = 150;
 	int y = 90;
 	int Width = 1600;

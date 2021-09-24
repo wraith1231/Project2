@@ -32,14 +32,14 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 	
 	WindowDesc desc;
 	desc.hInstance = hInstance;
-	Singleton<Window>("Window")->SetDesc(desc);
+	Singleton<Window>()->SetDesc(desc);
 
-	if (Singleton<Window>("Window")->Init(nShowCmd) == false)
+	if (Singleton<Window>()->Init(nShowCmd) == false)
 		return 0;
 
 	SingletonManager::Singleton()->Init();
 
-	return Singleton<Window>("Window")->Run();
+	return Singleton<Window>()->Run();
 }
 
 LRESULT WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -47,11 +47,11 @@ LRESULT WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_LBUTTONDOWN:
-
+		
 		return 0;
 	case WM_KEYDOWN:
 		if (wParam == VK_ESCAPE)
-			DestroyWindow(Singleton<Window>("Window")->GetDesc().ghMainWnd);
+			DestroyWindow(Singleton<Window>()->GetDesc().ghMainWnd);
 		return 0;
 	case WM_DESTROY:
 		PostQuitMessage(0);

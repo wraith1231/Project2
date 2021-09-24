@@ -12,6 +12,7 @@
 #include <time.h>
 #include <vector>
 #include <map>
+#include <functional>
 
 
 #include <d3d12.h>

@@ -41,6 +41,9 @@
     <ClInclude Include="D3D.h">
       <Filter>System\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>System\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -60,6 +63,9 @@
       <Filter>System\Code</Filter>
     </ClCompile>
     <ClCompile Include="D3D.cpp">
+      <Filter>System\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
       <Filter>System\Code</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,8 +1,6 @@
 #pragma once
 
 class Singletons;
-class Window;
-class Time;
 
 class SingletonManager
 {
@@ -26,7 +24,10 @@ private:
 static SingletonManager* h_instance = 0;
 
 template <typename T>
-T* Singleton(string str)
+T* Singleton()//string str)
 {
+	string str = typeid(T).name();
+	size_t count = str.find(' ');
+	str = str.substr(count + 1, str.length() - count);
 	return (T*)SingletonManager::Singleton()->GetSingleton(str);
 }

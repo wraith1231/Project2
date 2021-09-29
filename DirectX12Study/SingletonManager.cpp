@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Time.h"
 #include "Input.h"
+#include "D3D.h"
 
 SingletonManager::SingletonManager()
 {
@@ -58,6 +59,7 @@ SingletonManager* SingletonManager::Singleton()
 		h_instance->AddSingleton("Window", new Window());
 		h_instance->AddSingleton("Time", new Time());
 		h_instance->AddSingleton("Input", new Input());
+		h_instance->AddSingleton("D3D", new D3D());
 	}
 
 	return h_instance;

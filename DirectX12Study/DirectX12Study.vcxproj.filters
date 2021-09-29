@@ -44,6 +44,9 @@
     <ClInclude Include="Input.h">
       <Filter>System\Header</Filter>
     </ClInclude>
+    <ClInclude Include="d3dx12.h">
+      <Filter>리소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">

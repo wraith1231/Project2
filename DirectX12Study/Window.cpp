@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "SingletonManager.h"
 #include "Time.h"
+#include "D3D.h"
 
 Window::Window()
 {

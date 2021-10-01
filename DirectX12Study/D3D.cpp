@@ -341,6 +341,7 @@ void D3D::SetScissorRectangle()
 		Singleton<Window>()->GetDesc().Width / 2, 
 		Singleton<Window>()->GetDesc().Height / 2 };
 	_commandList->RSSetScissorRects(1, &_scissorRect);
+	
 }
 
 void D3D::FlushCommandQueue()

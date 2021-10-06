@@ -27,7 +27,14 @@ void D3D::Init()
 
 	CreateD3DDevice();
 	CreateFence();
+	MSAAQualityCheck();
 	CreateCommand();
+	CreateSwapChain();
+	CreateDescriptorHeap();
+	CreateRenderTargetView();
+	CreateDepthStencilView();
+	SetViewport();
+	SetScissorRectangle();
 
 	LogAdapters();
 	

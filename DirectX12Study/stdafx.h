@@ -23,8 +23,9 @@
 #include <d3dtypes.h>
 #include <dxgi.h>
 #include <dxgicommon.h>
+#include "External/d3dUtil.h"
 
-#include "d3dx12.h"
+#include "External/d3dx12.h"
 
 using namespace std;
 using namespace DirectX;
@@ -38,14 +39,3 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 #pragma once 
 ostream& XM_CALLCONV operator<<(ostream& os, FXMVECTOR v);
 ostream& XM_CALLCONV operator<<(ostream& os, FXMMATRIX m);
-
-namespace DX
-{
-	inline void ThrowIfFailed(HRESULT hr)
-	{
-		if (FAILED(hr))
-		{
-			throw exception();
-		}
-	}
-}

@@ -16,7 +16,7 @@ SingletonManager::~SingletonManager()
 
 void SingletonManager::Init()
 {
-
+	//_Singletons["D3D"]->Init();
 }
 
 void SingletonManager::Update()

@@ -141,6 +141,11 @@
   <ItemGroup>
     <ClInclude Include="D3D.h" />
     <ClInclude Include="d3dx12.h" />
+    <ClInclude Include="External\d3dUtil.h" />
+    <ClInclude Include="External\d3dx12.h" />
+    <ClInclude Include="External\DDSTextureLoader.h" />
+    <ClInclude Include="External\MathHelper.h" />
+    <ClInclude Include="External\UploadBuffer.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Reference\XMMatrixTest.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -158,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3D.cpp" />
+    <ClCompile Include="External\d3dUtil.cpp" />
+    <ClCompile Include="External\DDSTextureLoader.cpp" />
+    <ClCompile Include="External\MathHelper.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Reference\XMMatrixTest.cpp">

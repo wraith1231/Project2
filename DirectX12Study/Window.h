@@ -10,6 +10,7 @@ struct WindowDesc
 	int Width = 1600;
 	int Height = 900;
 	int MaxFPS = 60;
+	bool Paused = false;
 };
 
 class Window : public Singletons

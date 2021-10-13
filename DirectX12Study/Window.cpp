@@ -55,6 +55,7 @@ bool Window::Init(int show)
 	ShowWindow(_desc.ghMainWnd, show);
 	UpdateWindow(_desc.ghMainWnd);
 
+	Singleton<D3D>()->Init();
 	return true;
 }
 
@@ -73,18 +74,6 @@ int Window::Run()
 	float delta;
 	while (msg.message != WM_QUIT)
 	{
-		last = ch::high_resolution_clock::now();
-		diff = last - now;
-		delta = (float)ch::duration_cast<ch::milliseconds>(diff).count();
-
-
-		if (delta < (1 / (float)_desc.MaxFPS) * 1000)
-		{
-			continue;
-		}
-		now = last;
-		//Singleton<Time>("Time")->SetDeltaTime(delta);
-		Singleton<Time>()->SetDeltaTime(delta);
 
 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE) == TRUE)
 		{
@@ -94,8 +83,33 @@ int Window::Run()
 		}
 		else
 		{
+			last = ch::high_resolution_clock::now();
+			diff = last - now;
+			delta = (float)ch::duration_cast<ch::milliseconds>(diff).count() * 0.001f;
+
+
+			if (delta < (1 / (float)_desc.MaxFPS))
+			{
+				continue;
+			}
+			now = last;
+			//Singleton<Time>("Time")->SetDeltaTime(delta);
+			Singleton<Time>()->SetDeltaTime(delta);
+
+			wstring deltaStr = to_wstring(delta);
+
+			wstring windowText = L"D3D12	 delta : " + deltaStr;
+			SetWindowText(_desc.ghMainWnd, windowText.c_str());
 			//Message 입력이 없는 경우
-			SingletonManager::Singleton()->Update();
+			
+			if (_desc.Paused == false)
+			{
+				SingletonManager::Singleton()->Update();
+			}
+			else
+			{
+				Sleep(100);
+			}
 		}
 	}
 

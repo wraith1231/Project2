@@ -16,6 +16,8 @@ public:
 
     virtual void Delete() override;
 
+    void Resize();
+
     void LogAdapters();
     void LogAdapterOutputs(IDXGIAdapter* adapter);
     void LogOutputDisplayModes(IDXGIOutput* output, DXGI_FORMAT format);
@@ -36,15 +38,16 @@ private:
 
     D3D12_CPU_DESCRIPTOR_HANDLE GetCurrentBackBufferView() const;
     D3D12_CPU_DESCRIPTOR_HANDLE GetDepthStencilView() const;
+    ID3D12Resource* GetCurrentBackBuffer() const;
 
 private:
     wrl::ComPtr<ID3D12Debug> _debugController;
     
-    wrl::ComPtr<IDXGIFactory> _dxgiFactory;
+    wrl::ComPtr<IDXGIFactory4> _dxgiFactory;
     wrl::ComPtr<IDXGIAdapter> _warpAdapter;
     wrl::ComPtr<ID3D12Device> _d3dDevice;
     wrl::ComPtr<ID3D12Fence> _fence;
-    wrl::ComPtr<IDXGISwapChain> _swapChain;
+    wrl::ComPtr<IDXGISwapChain1> _swapChain;
     wrl::ComPtr<ID3D12Resource> _swapChainBuffer[SwapChainBufferCount];
 
     wrl::ComPtr<ID3D12DescriptorHeap> _rtvHeap;
@@ -67,5 +70,7 @@ private:
     DXGI_FORMAT _depthStencilFormat;
 
     tagRECT _scissorRect;
+
+    UINT64 _currentFence = 0;
 };
 

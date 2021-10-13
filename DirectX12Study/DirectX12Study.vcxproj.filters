@@ -17,6 +17,9 @@
     <Filter Include="Reference">
       <UniqueIdentifier>{92ce2fae-b903-4e63-8d1f-c6f1d8755ea3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{3d980249-a32b-4317-9564-5857ed01a69d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SingletonManager.h">
@@ -47,6 +50,21 @@
     <ClInclude Include="d3dx12.h">
       <Filter>리소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="External\DDSTextureLoader.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="External\MathHelper.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="External\UploadBuffer.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="External\d3dUtil.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="External\d3dx12.h">
+      <Filter>External</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -70,6 +88,15 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>System\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="External\DDSTextureLoader.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="External\MathHelper.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="External\d3dUtil.cpp">
+      <Filter>External</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

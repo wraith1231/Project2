@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SingletonManager.h"
 #include "Window.h"
+#include "Input.h"
 
 #pragma region XMVECTOR_XMMATRIX_OUTPUT
 ostream& XM_CALLCONV operator<<(ostream& os, FXMVECTOR v)
@@ -44,18 +45,5 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
 LRESULT WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	switch (msg)
-	{
-	case WM_LBUTTONDOWN:
-		
-		return 0;
-	case WM_KEYDOWN:
-		if (wParam == VK_ESCAPE)
-			DestroyWindow(Singleton<Window>()->GetDesc().ghMainWnd);
-		return 0;
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		return 0;
-	}
-	return DefWindowProc(hWnd, msg, wParam, lParam);
+	return Singleton<Input>()->MsgProc(hWnd, msg, wParam, lParam);
 }

@@ -28,6 +28,10 @@ public:
 	WindowDesc GetDesc() { return _desc; }
 	void SetDesc(WindowDesc desc);
 
+	void SetWidth(int width);
+	void SetHeight(int height);
+
+	void SetPaused(bool paused);
 
 private:
 	WindowDesc _desc;

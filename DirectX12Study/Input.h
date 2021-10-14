@@ -12,7 +12,7 @@ public:
     virtual void Update() override;
     virtual void Delete() override;
 
-    void Foo();
+    LRESULT MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 private:
 

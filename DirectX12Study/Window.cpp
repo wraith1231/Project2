@@ -68,9 +68,9 @@ int Window::Run()
 	MSG msg = { 0 };
 
 	ch::time_point<ch::high_resolution_clock> now = ch::high_resolution_clock::now();
-
 	ch::time_point<ch::high_resolution_clock> last;
 	ch::nanoseconds diff;
+
 	float delta;
 	while (msg.message != WM_QUIT)
 	{
@@ -97,14 +97,18 @@ int Window::Run()
 			Singleton<Time>()->SetDeltaTime(delta);
 
 			wstring deltaStr = to_wstring(delta);
+			wstring running = to_wstring(Singleton<Time>()->GetRunningTime());
 
-			wstring windowText = L"D3D12	 delta : " + deltaStr;
+			wstring windowText = L"D3D12 delta : " + deltaStr
+				+ L" Running : " + running;
 			SetWindowText(_desc.ghMainWnd, windowText.c_str());
 			//Message 입력이 없는 경우
 			
 			if (_desc.Paused == false)
 			{
 				SingletonManager::Singleton()->Update();
+
+				Singleton<D3D>()->Draw();
 			}
 			else
 			{
@@ -129,4 +133,19 @@ void Window::SetDesc(WindowDesc desc)
 {
 	_desc.hInstance = desc.hInstance;
 	_desc.ghMainWnd = desc.ghMainWnd;
+}
+
+void Window::SetWidth(int width)
+{
+	_desc.Width = width;
+}
+
+void Window::SetHeight(int height)
+{
+	_desc.Height = height;
+}
+
+void Window::SetPaused(bool paused)
+{
+	_desc.Paused = paused;
 }

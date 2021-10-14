@@ -22,6 +22,8 @@ void Time::Update()
 {
 	_lastTime = ch::high_resolution_clock::now();
 	_runningTime = (float)ch::duration_cast<ch::milliseconds>(_lastTime - _startTime).count() * 0.001f;
+
+
 }
 
 void Time::Delete()

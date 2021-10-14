@@ -6,6 +6,9 @@
 D3D::D3D()
 {
 	//Init();
+	_backBufferFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
+	_depthStencilFormat = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	_currentBackBuffer = 0;
 }
 
 D3D::~D3D()
@@ -21,26 +24,22 @@ void D3D::Init()
 		_debugController->EnableDebugLayer();
 	}
 #endif
-	_backBufferFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
-	_depthStencilFormat = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	_currentBackBuffer = 0;
 
 	CreateD3DDevice();
 	CreateFence();
 	MSAAQualityCheck();
+
 #ifdef _DEBUG
 	LogAdapters();
 #endif // _DEBUG
 
-
 	CreateCommand();
 	CreateSwapChain();
 	CreateDescriptorHeap();
-	//CreateRenderTargetView();
-	//CreateDepthStencilView();
-	//SetViewport();
-	//SetScissorRectangle();
-	
+	Resize(Singleton<Window>()->GetDesc().Width,
+		Singleton<Window>()->GetDesc().Height);
+
+	_deviceInit = true;
 }
 
 void D3D::Update()
@@ -57,11 +56,58 @@ void D3D::Delete()
 	_fence->Release();
 	_debugController->Release();
 	_dxgiFactory->Release();
-	_warpAdapter->Release();
 	_d3dDevice->Release();
 }
 
-void D3D::Resize()
+void D3D::Draw()
+{
+	ThrowIfFailed(_commandAllocator->Reset());
+
+	ThrowIfFailed(_commandList->Reset(_commandAllocator.Get(), nullptr));
+
+	auto temp = CD3DX12_RESOURCE_BARRIER::Transition(
+		GetCurrentBackBuffer(),
+		D3D12_RESOURCE_STATE_PRESENT,
+		D3D12_RESOURCE_STATE_RENDER_TARGET
+	);
+	_commandList->ResourceBarrier(1, &temp);
+
+	_commandList->RSSetViewports(1, &_screenViewport);
+	_commandList->RSSetScissorRects(1, &_scissorRect);
+	D3D12_CPU_DESCRIPTOR_HANDLE cbbv = GetCurrentBackBufferView();
+	D3D12_CPU_DESCRIPTOR_HANDLE dsv = GetDepthStencilView();
+
+	_commandList->ClearRenderTargetView(cbbv,
+		Colors::LightSteelBlue, 0, nullptr
+	);
+	_commandList->ClearDepthStencilView(dsv,
+		D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL,
+		1.0f, 0, 0, nullptr
+	);
+
+	_commandList->OMSetRenderTargets(1, &cbbv,
+		true, &dsv
+	);
+
+	auto temp2 = CD3DX12_RESOURCE_BARRIER::Transition(
+		GetCurrentBackBuffer(),
+		D3D12_RESOURCE_STATE_RENDER_TARGET,
+		D3D12_RESOURCE_STATE_PRESENT
+	);
+	_commandList->ResourceBarrier(1, &temp2);
+
+	ThrowIfFailed(_commandList->Close());
+
+	ID3D12CommandList* lists[] = { _commandList.Get() };
+	_commandQueue->ExecuteCommandLists(_countof(lists), lists);
+
+	ThrowIfFailed(_swapChain->Present(0, 0));
+	_currentBackBuffer = (_currentBackBuffer + 1) % SwapChainBufferCount;
+
+	FlushCommandQueue();
+}
+
+void D3D::Resize(UINT width, UINT height)
 {
 	assert(_d3dDevice);
 	assert(_swapChain);
@@ -77,8 +123,25 @@ void D3D::Resize()
 	}
 	_depthStencilBuffer.Reset();
 
-	
+	ThrowIfFailed(_swapChain->ResizeBuffers(
+		SwapChainBufferCount,
+		width, height,
+		_backBufferFormat,
+		DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH
+	));
 
+	_currentBackBuffer = 0;
+	CreateRenderTargetView();
+	CreateDepthStencilView(width, height);
+
+	ThrowIfFailed(_commandList->Close());
+	ID3D12CommandList* commandLists[] = { _commandList.Get() };
+	_commandQueue->ExecuteCommandLists(_countof(commandLists), commandLists);
+
+	FlushCommandQueue();
+
+	SetViewport(width, height);
+	SetScissorRectangle(width, height);
 }
 
 #pragma region LOG
@@ -154,7 +217,17 @@ void D3D::LogOutputDisplayModes(IDXGIOutput* output, DXGI_FORMAT format)
 
 void D3D::CreateD3DDevice()
 {
-	ThrowIfFailed(CreateDXGIFactory1(IID_PPV_ARGS(&_dxgiFactory)));
+	DWORD dxgiFactoryFlag = 0;
+#ifdef _DEBUG
+	dxgiFactoryFlag = DXGI_CREATE_FACTORY_DEBUG;
+#endif // _DEBUG
+
+
+	HRESULT hr = CreateDXGIFactory2(dxgiFactoryFlag, IID_PPV_ARGS(&_dxgiFactory));
+	if (FAILED(hr))
+	{
+		MessageBox(0, L"factory creation failed", L"Error", MB_OK);
+	}
 
 	HRESULT hardwareResult = D3D12CreateDevice(
 		nullptr,
@@ -231,17 +304,19 @@ void D3D::CreateCommand()
 
 }
 
-void D3D::CreateSwapChain()
+void D3D::CreateSwapChain(UINT width, UINT height, DXGI_FORMAT format)
 {
 	_swapChain.Reset();
-
+	_backBufferFormat = format;
 	DXGI_SWAP_CHAIN_DESC1 desc;
-	desc.Width = Singleton<Window>()->GetDesc().Width;
-	desc.Height = Singleton<Window>()->GetDesc().Height;
-	desc.Format = _backBufferFormat;
+	desc.Width = width;
+	desc.Height = height;
+	desc.Format = format;
 	desc.Scaling = DXGI_SCALING_STRETCH;
-	desc.SampleDesc.Count = _msaaQuality ? 4 : 1;
-	desc.SampleDesc.Quality = _msaaQuality ? (_msaaQuality - 1) : 0;
+	desc.SampleDesc.Count = 1;
+	desc.SampleDesc.Quality = 0;
+	//desc.SampleDesc.Count = _msaaQuality ? 4 : 1;
+	//desc.SampleDesc.Quality = _msaaQuality ? (_msaaQuality - 1) : 0;
 	desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	desc.BufferCount = SwapChainBufferCount;
 	desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
@@ -262,6 +337,11 @@ void D3D::CreateSwapChain()
 	//	_swapChain.GetAddressOf()
 	//));
 
+	if (FAILED(hr))
+	{
+		MessageBox(0, L"swapchain creation failed", L"Error", MB_OK);
+	}
+	
 	int a = 0;
 }
 
@@ -313,22 +393,25 @@ void D3D::CreateRenderTargetView()
 	}
 }
 
-void D3D::CreateDepthStencilView()
+void D3D::CreateDepthStencilView(UINT width, UINT height, DXGI_FORMAT format)
 {
+	_depthStencilFormat = format;
 	D3D12_RESOURCE_DESC desc;
 	desc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
 	desc.Alignment = 0;
-	desc.Width = Singleton<Window>()->GetDesc().Width;
-	desc.Height = Singleton<Window>()->GetDesc().Height;
+	desc.Width = width;
+	desc.Height = height;
 	desc.DepthOrArraySize = 1;
 	desc.MipLevels = 1;
-	desc.Format = _depthStencilFormat;
-	desc.SampleDesc.Count = _msaaQuality ? 4 : 1;
-	desc.SampleDesc.Quality = _msaaQuality ? (_msaaQuality - 1) : 0;
+	desc.Format = format;
+	desc.SampleDesc.Count = 1;
+	desc.SampleDesc.Quality = 0;
+	//desc.SampleDesc.Count = _msaaQuality ? 4 : 1;
+	//desc.SampleDesc.Quality = _msaaQuality ? (_msaaQuality - 1) : 0;
 	desc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
 	desc.Flags = D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL;
 
-	D3D12_CLEAR_VALUE value;
+	D3D12_CLEAR_VALUE value = {};
 	value.Format = _depthStencilFormat;
 	value.DepthStencil.Depth = 1.0f;
 	value.DepthStencil.Stencil = 0;
@@ -364,24 +447,23 @@ void D3D::CreateDepthStencilView()
 	);
 }
 
-void D3D::SetViewport()
+void D3D::SetViewport(UINT width, UINT height)
 {
-	D3D12_VIEWPORT viewport;
-	viewport.TopLeftX = 0.0f;
-	viewport.TopLeftY = 0.0f;
-	viewport.Width = static_cast<float>(Singleton<Window>()->GetDesc().Width);
-	viewport.Height = static_cast<float>(Singleton<Window>()->GetDesc().Height);
-	viewport.MinDepth = 0.0f;
-	viewport.MaxDepth = 1.0f;
+	_screenViewport.TopLeftX = 0.0f;
+	_screenViewport.TopLeftY = 0.0f;
+	_screenViewport.Width = static_cast<float>(width);
+	_screenViewport.Height = static_cast<float>(height);
+	_screenViewport.MinDepth = 0.0f;
+	_screenViewport.MaxDepth = 1.0f;
 
-	_commandList->RSSetViewports(1, &viewport);
+	_commandList->RSSetViewports(1, &_screenViewport);
 }
 
-void D3D::SetScissorRectangle()
+void D3D::SetScissorRectangle(UINT width, UINT height)
 {
 	_scissorRect = { 0, 0, 
-		Singleton<Window>()->GetDesc().Width / 2, 
-		Singleton<Window>()->GetDesc().Height / 2 };
+		static_cast<long>(width / 2), 
+		static_cast<long>(height / 2) };
 	_commandList->RSSetScissorRects(1, &_scissorRect);
 	
 }

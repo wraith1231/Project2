@@ -16,29 +16,39 @@ public:
 
     virtual void Delete() override;
 
-    void Resize();
+    void Draw();
+
+    void Resize(UINT width = 1600, UINT height = 900);
 
     void LogAdapters();
     void LogAdapterOutputs(IDXGIAdapter* adapter);
     void LogOutputDisplayModes(IDXGIOutput* output, DXGI_FORMAT format);
+
+    bool DeviceInit() { return _deviceInit; }
 
 private:
     void CreateD3DDevice();
     void CreateFence();
     void MSAAQualityCheck();
     void CreateCommand();
-    void CreateSwapChain();
+    void CreateSwapChain(
+        UINT width = 1600, UINT height = 900,
+        DXGI_FORMAT format = DXGI_FORMAT_R8G8B8A8_UNORM);
     void CreateDescriptorHeap();
     void CreateRenderTargetView();
-    void CreateDepthStencilView();
-    void SetViewport();
-    void SetScissorRectangle();
+    void CreateDepthStencilView(
+        UINT width = 1600, UINT height = 900,
+        DXGI_FORMAT format = DXGI_FORMAT_D24_UNORM_S8_UINT);
+    void SetViewport(UINT width = 1600, UINT height = 900);
+    void SetScissorRectangle(UINT width = 1600, UINT height = 900);
 
     void FlushCommandQueue();
 
     D3D12_CPU_DESCRIPTOR_HANDLE GetCurrentBackBufferView() const;
     D3D12_CPU_DESCRIPTOR_HANDLE GetDepthStencilView() const;
     ID3D12Resource* GetCurrentBackBuffer() const;
+
+
 
 private:
     wrl::ComPtr<ID3D12Debug> _debugController;
@@ -70,7 +80,10 @@ private:
     DXGI_FORMAT _depthStencilFormat;
 
     tagRECT _scissorRect;
+    D3D12_VIEWPORT _screenViewport;
 
     UINT64 _currentFence = 0;
+
+    bool _deviceInit = false;
 };
 

@@ -59,7 +59,7 @@ void D3D::Delete()
 	_d3dDevice->Release();
 }
 
-void D3D::Draw()
+void D3D::PostDraw()
 {
 	ThrowIfFailed(_commandAllocator->Reset());
 
@@ -84,11 +84,17 @@ void D3D::Draw()
 		D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL,
 		1.0f, 0, 0, nullptr
 	);
+}
 
-	_commandList->OMSetRenderTargets(1, &cbbv,
+void D3D::SetRenderTarget(UINT num, D3D12_CPU_DESCRIPTOR_HANDLE target, D3D12_CPU_DESCRIPTOR_HANDLE dsv)
+{
+	_commandList->OMSetRenderTargets(1, &target,
 		true, &dsv
 	);
+}
 
+void D3D::Draw()
+{
 	auto temp2 = CD3DX12_RESOURCE_BARRIER::Transition(
 		GetCurrentBackBuffer(),
 		D3D12_RESOURCE_STATE_RENDER_TARGET,

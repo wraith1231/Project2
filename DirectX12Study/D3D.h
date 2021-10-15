@@ -16,6 +16,8 @@ public:
 
     virtual void Delete() override;
 
+    void PostDraw();
+    void SetRenderTarget(UINT num, D3D12_CPU_DESCRIPTOR_HANDLE target, D3D12_CPU_DESCRIPTOR_HANDLE dsv);
     void Draw();
 
     void Resize(UINT width = 1600, UINT height = 900);
@@ -25,6 +27,10 @@ public:
     void LogOutputDisplayModes(IDXGIOutput* output, DXGI_FORMAT format);
 
     bool DeviceInit() { return _deviceInit; }
+
+    D3D12_CPU_DESCRIPTOR_HANDLE GetCurrentBackBufferView() const;
+    D3D12_CPU_DESCRIPTOR_HANDLE GetDepthStencilView() const;
+    ID3D12Resource* GetCurrentBackBuffer() const;
 
 private:
     void CreateD3DDevice();
@@ -43,10 +49,6 @@ private:
     void SetScissorRectangle(UINT width = 1600, UINT height = 900);
 
     void FlushCommandQueue();
-
-    D3D12_CPU_DESCRIPTOR_HANDLE GetCurrentBackBufferView() const;
-    D3D12_CPU_DESCRIPTOR_HANDLE GetDepthStencilView() const;
-    ID3D12Resource* GetCurrentBackBuffer() const;
 
 
 

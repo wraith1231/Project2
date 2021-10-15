@@ -87,7 +87,6 @@ int Window::Run()
 			diff = last - now;
 			delta = (float)ch::duration_cast<ch::milliseconds>(diff).count() * 0.001f;
 
-
 			if (delta < (1 / (float)_desc.MaxFPS))
 			{
 				continue;
@@ -108,6 +107,8 @@ int Window::Run()
 			{
 				SingletonManager::Singleton()->Update();
 
+				Singleton<D3D>()->PostDraw();
+				Singleton<D3D>()->SetRenderTarget(1, Singleton<D3D>()->GetCurrentBackBufferView(), Singleton<D3D>()->GetDepthStencilView());
 				Singleton<D3D>()->Draw();
 			}
 			else

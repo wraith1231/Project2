@@ -36,6 +36,7 @@ XMVECTOR XMVectorMultiply(FXMVECTOR V1, FXMVECTOR V2)																V1 * V2 리�
 XMVECTOR XMVectorSaturate(FXMVECTOR V)																				V의 값을 0과 1사이로 맞추고 리턴(0보다 작으면 0, 1보다 크면 1)
 XMVECTOR XMVectorMin(FXMVECTOR V1, FXMVECTOR V2)																	V1과 V2중 작은 쪽 리턴
 XMVECTOR XMVectorMax(FXMVECTOR V1, FXMVECTOR V2)																	V1과 V2중 큰 쪽 리턴
+XMVECTOR XMColorModulate(FXMVECTOR C1, FXMVECTOR C2);																C1과 C2의 벡터 값을 곱, 단 x는 x끼리, y는 y끼리 식
 
 
 

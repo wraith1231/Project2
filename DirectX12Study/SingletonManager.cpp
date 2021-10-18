@@ -12,6 +12,7 @@ SingletonManager::SingletonManager()
 
 SingletonManager::~SingletonManager()
 {
+	Delete();
 }
 
 void SingletonManager::Init()

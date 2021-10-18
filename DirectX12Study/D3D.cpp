@@ -5,7 +5,21 @@
 
 D3D::D3D()
 {
-	//Init();
+	_rtvDescriptorSize = 0;
+	_dsvDescriptorSize = 0;
+	_cbvDescriptorSize = 0;
+	_msaaQuality = 0;
+	_currentBackBuffer = 0;
+
+	_backBufferFormat = {};
+	_depthStencilFormat = {};
+
+	_scissorRect = {};
+	_screenViewport = {};
+
+	_currentFence = 0;
+
+	_deviceInit = false;
 	_backBufferFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
 	_depthStencilFormat = DXGI_FORMAT_D24_UNORM_S8_UINT;
 	_currentBackBuffer = 0;
@@ -53,59 +67,47 @@ void D3D::Delete()
 	_commandQueue->Release();
 	_commandList->Release();
 
+	_swapChain->Release();
+	for (int i = 0; i < SwapChainBufferCount; i++)
+		_swapChainBuffer[i]->Release();
+	_depthStencilBuffer->Release();
+
+	_rtvHeap->Release();
+	_dsvHeap->Release();
+
 	_fence->Release();
-	_debugController->Release();
 	_dxgiFactory->Release();
 	_d3dDevice->Release();
+	
+#ifdef _DEBUG
+	_debugController->Release();
+#endif // _DEBUG
 }
 
-void D3D::PostDraw()
+void D3D::PreDraw()
 {
-	ThrowIfFailed(_commandAllocator->Reset());
+	ClearCommandList();
 
-	ThrowIfFailed(_commandList->Reset(_commandAllocator.Get(), nullptr));
-
-	auto temp = CD3DX12_RESOURCE_BARRIER::Transition(
-		GetCurrentBackBuffer(),
-		D3D12_RESOURCE_STATE_PRESENT,
-		D3D12_RESOURCE_STATE_RENDER_TARGET
-	);
-	_commandList->ResourceBarrier(1, &temp);
+	ResourceBarrior(GetCurrentBackBuffer());
 
 	_commandList->RSSetViewports(1, &_screenViewport);
 	_commandList->RSSetScissorRects(1, &_scissorRect);
 	D3D12_CPU_DESCRIPTOR_HANDLE cbbv = GetCurrentBackBufferView();
 	D3D12_CPU_DESCRIPTOR_HANDLE dsv = GetDepthStencilView();
 
-	_commandList->ClearRenderTargetView(cbbv,
-		Colors::LightSteelBlue, 0, nullptr
-	);
-	_commandList->ClearDepthStencilView(dsv,
-		D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL,
-		1.0f, 0, 0, nullptr
-	);
-}
+	ClearRenderTargetView(cbbv);
+	ClearDepthStencilView(dsv);
 
-void D3D::SetRenderTarget(UINT num, D3D12_CPU_DESCRIPTOR_HANDLE target, D3D12_CPU_DESCRIPTOR_HANDLE dsv)
-{
-	_commandList->OMSetRenderTargets(1, &target,
-		true, &dsv
-	);
+	SetRenderTargetView(1, &cbbv, &dsv);
 }
 
 void D3D::Draw()
 {
-	auto temp2 = CD3DX12_RESOURCE_BARRIER::Transition(
-		GetCurrentBackBuffer(),
-		D3D12_RESOURCE_STATE_RENDER_TARGET,
-		D3D12_RESOURCE_STATE_PRESENT
-	);
-	_commandList->ResourceBarrier(1, &temp2);
+	ResourceBarrior(GetCurrentBackBuffer());
 
-	ThrowIfFailed(_commandList->Close());
+	CloseCommandList();
 
-	ID3D12CommandList* lists[] = { _commandList.Get() };
-	_commandQueue->ExecuteCommandLists(_countof(lists), lists);
+	ExecuteCommandList();
 
 	ThrowIfFailed(_swapChain->Present(0, 0));
 	_currentBackBuffer = (_currentBackBuffer + 1) % SwapChainBufferCount;
@@ -490,6 +492,56 @@ void D3D::FlushCommandQueue()
 		WaitForSingleObject(eventHandle, INFINITE);
 		CloseHandle(eventHandle);
 	}
+}
+
+void D3D::ClearCommandList()
+{
+	ThrowIfFailed(_commandAllocator->Reset());
+
+	ThrowIfFailed(_commandList->Reset(_commandAllocator.Get(), nullptr));
+}
+
+void D3D::ResourceBarrior(ID3D12Resource* resource)
+{
+	auto temp = CD3DX12_RESOURCE_BARRIER::Transition(
+		resource,
+		D3D12_RESOURCE_STATE_PRESENT,
+		D3D12_RESOURCE_STATE_RENDER_TARGET
+	);
+	_commandList->ResourceBarrier(1, &temp);
+}
+
+void D3D::ClearRenderTargetView(D3D12_CPU_DESCRIPTOR_HANDLE rtv, const FLOAT* color)
+{
+	_commandList->ClearRenderTargetView(rtv,
+		color, 0, nullptr
+	);
+}
+
+void D3D::ClearDepthStencilView(D3D12_CPU_DESCRIPTOR_HANDLE dsv)
+{
+	_commandList->ClearDepthStencilView(dsv,
+		D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL,
+		1.0f, 0, 0, nullptr
+	);
+}
+
+void D3D::SetRenderTargetView(UINT num, D3D12_CPU_DESCRIPTOR_HANDLE* rtv, D3D12_CPU_DESCRIPTOR_HANDLE* dsv)
+{
+	_commandList->OMSetRenderTargets(num, rtv,
+		true, dsv
+	);
+}
+
+void D3D::CloseCommandList()
+{
+	ThrowIfFailed(_commandList->Close());
+}
+
+void D3D::ExecuteCommandList()
+{
+	ID3D12CommandList* lists[] = { _commandList.Get() };
+	_commandQueue->ExecuteCommandLists(_countof(lists), lists);
 }
 
 D3D12_CPU_DESCRIPTOR_HANDLE D3D::GetCurrentBackBufferView() const

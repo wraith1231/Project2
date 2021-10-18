@@ -1,1 +1,17 @@
 ::OutputDebugString(LTWSTR) 디버그시 출력부분에 ltwstr 넣어줌
+
+
+SceneManager 만들어주고 거기에 RenderManager 넣어줘야함
+RenderManager에는 Model(렌더링할거 인터페이스) 벡터로 관리하게 해주는거 넣어주고
+Scene 업데이트 초반부에 클리어해주고 Model들 Move 완료되면 Culling 작업 해서 넣어주기
+SceneManager도 Model vector단위로 관리해줄 필요 잇음
+
+SceneManager는 싱글톤으론 관리 안하고 Windows나 D3D에 넣어줘야될거같은데
+아니다 Input도 있으니 그쪽에 넘겨줘야 하나 아예 독립적 싱글톤으로 하는게 나으려나
+업데이트 돌입하면 각 렌더매니저의 모델 vector 클리어하고 Model들 이동하면서 이동한 위치에 맞게 Quad Tree 적용해주고
+그다음 RenderManager에 전달해서 쭉 돌리고 모델들은 move 말고 나머지 작업 수행하기
+업데이트 끝나면 렌더매니저에서 전체 포스트 프로세스들 돌면서 수행해주고(가급적 여러개 한번에 묶어서 보내줘야하는데...)
+다 돌면 D3D 메인 버퍼에 전체 결과물 넘겨서 다 더해주기
+
+포스트프로세스는 _mainBuffer에 현재 화면에 보일 장면을 담아두는 용도
+추가로 필요한 렌더타겟은 알아서 생성할것

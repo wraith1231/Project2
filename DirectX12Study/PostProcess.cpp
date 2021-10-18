@@ -1,0 +1,6 @@
+#include "stdafx.h"
+#include "PostProcess.h"
+#include "RenderManager.h"
+#include "Window.h"
+#include "Time.h"
+#include "D3D.h"

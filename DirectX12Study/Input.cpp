@@ -11,6 +11,7 @@ Input::Input()
 
 Input::~Input()
 {
+	Delete();
 }
 
 void Input::Init()
@@ -69,7 +70,7 @@ LRESULT Input::MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		UINT width = LOWORD(lParam);
 		UINT height = HIWORD(lParam);
 		Singleton<Window>()->SetPaused(false);
-		Singleton<D3D>()->Resize(width, height);
+		//Singleton<D3D>()->Resize(width, height);
 		break;
 	}
 	case WM_DESTROY:

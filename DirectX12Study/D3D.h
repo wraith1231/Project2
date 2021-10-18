@@ -16,8 +16,7 @@ public:
 
     virtual void Delete() override;
 
-    void PostDraw();
-    void SetRenderTarget(UINT num, D3D12_CPU_DESCRIPTOR_HANDLE target, D3D12_CPU_DESCRIPTOR_HANDLE dsv);
+    void PreDraw();
     void Draw();
 
     void Resize(UINT width = 1600, UINT height = 900);
@@ -31,6 +30,16 @@ public:
     D3D12_CPU_DESCRIPTOR_HANDLE GetCurrentBackBufferView() const;
     D3D12_CPU_DESCRIPTOR_HANDLE GetDepthStencilView() const;
     ID3D12Resource* GetCurrentBackBuffer() const;
+
+    void FlushCommandQueue();
+
+    void ClearCommandList();
+    void ResourceBarrior(ID3D12Resource* resource);
+    void ClearRenderTargetView(D3D12_CPU_DESCRIPTOR_HANDLE rtv, const FLOAT* color = Colors::LightSteelBlue);
+    void ClearDepthStencilView(D3D12_CPU_DESCRIPTOR_HANDLE dsv);
+    void SetRenderTargetView(UINT num, D3D12_CPU_DESCRIPTOR_HANDLE* rtv, D3D12_CPU_DESCRIPTOR_HANDLE* dsv = nullptr);
+    void CloseCommandList();
+    void ExecuteCommandList();
 
 private:
     void CreateD3DDevice();
@@ -47,10 +56,6 @@ private:
         DXGI_FORMAT format = DXGI_FORMAT_D24_UNORM_S8_UINT);
     void SetViewport(UINT width = 1600, UINT height = 900);
     void SetScissorRectangle(UINT width = 1600, UINT height = 900);
-
-    void FlushCommandQueue();
-
-
 
 private:
     wrl::ComPtr<ID3D12Debug> _debugController;
@@ -86,6 +91,6 @@ private:
 
     UINT64 _currentFence = 0;
 
-    bool _deviceInit = false;
+    bool _deviceInit;
 };
 

@@ -8,6 +8,7 @@ Time::Time()
 
 Time::~Time()
 {
+	Delete();
 }
 
 void Time::Init()

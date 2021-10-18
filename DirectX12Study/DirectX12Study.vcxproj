@@ -147,6 +147,7 @@
     <ClInclude Include="External\MathHelper.h" />
     <ClInclude Include="External\UploadBuffer.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="PostProcess.h" />
     <ClInclude Include="Reference\XMMatrixTest.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -155,6 +156,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="RenderManager.h" />
     <ClInclude Include="SingletonManager.h" />
     <ClInclude Include="Singletons.h" />
     <ClInclude Include="stdafx.h" />
@@ -168,6 +170,7 @@
     <ClCompile Include="External\MathHelper.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PostProcess.cpp" />
     <ClCompile Include="Reference\XMMatrixTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -176,6 +179,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="SingletonManager.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Window.cpp" />

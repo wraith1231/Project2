@@ -11,7 +11,7 @@ Input::Input()
 
 Input::~Input()
 {
-	Delete();
+	Release();
 }
 
 void Input::Init()
@@ -23,8 +23,9 @@ void Input::Update()
 {
 }
 
-void Input::Delete()
+ULONG Input::Release()
 {
+	return 0;
 }
 
 LRESULT Input::MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)

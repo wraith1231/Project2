@@ -12,7 +12,7 @@ Window::Window()
 
 Window::~Window()
 {
-	Delete();
+	Release();
 }
 
 bool Window::Init(int show)
@@ -116,7 +116,7 @@ int Window::Run()
 		}
 	}
 
-	SingletonManager::Singleton()->Delete();
+	SingletonManager::Singleton()->Release();
 	return (int)msg.wParam;
 }
 
@@ -124,8 +124,10 @@ void Window::Update()
 {
 }
 
-void Window::Delete()
+ULONG Window::Release()
 {
+
+	return 0;
 }
 
 void Window::SetDesc(WindowDesc desc)

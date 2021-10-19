@@ -8,7 +8,7 @@ Time::Time()
 
 Time::~Time()
 {
-	Delete();
+	Release();
 }
 
 void Time::Init()
@@ -27,6 +27,7 @@ void Time::Update()
 
 }
 
-void Time::Delete()
+ULONG Time::Release()
 {
+	return 0;
 }

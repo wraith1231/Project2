@@ -12,7 +12,7 @@ SingletonManager::SingletonManager()
 
 SingletonManager::~SingletonManager()
 {
-	Delete();
+	Release();
 }
 
 void SingletonManager::Init()
@@ -29,13 +29,15 @@ void SingletonManager::Update()
 	}
 }
 
-void SingletonManager::Delete()
+ULONG SingletonManager::Release()
 {
 	map<string, Singletons*>::iterator iter = _Singletons.begin();
 	for (; iter != _Singletons.end(); ++iter)
 	{
-		iter->second->Delete();
+		iter->second->Release();
 	}
+
+	return 0;
 }
 
 void SingletonManager::AddSingleton(string name, Singletons* sin)

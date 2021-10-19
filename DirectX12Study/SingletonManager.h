@@ -10,7 +10,7 @@ public:
 
 	void Init();
 	void Update();
-	void Delete();
+	ULONG Release();
 
 	void AddSingleton(string name, Singletons* sin);
 	Singletons* GetSingleton(string name);

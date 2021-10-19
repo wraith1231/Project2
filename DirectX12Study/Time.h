@@ -9,7 +9,7 @@ public:
 
 	virtual void Init() override;
 	virtual void Update() override;
-	virtual void Delete() override;
+	virtual ULONG Release() override;
 
 	float GetDeltaTime() { return _deltaTime; }
 	void SetDeltaTime(float time) { _deltaTime = time; }

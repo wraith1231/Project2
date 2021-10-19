@@ -14,7 +14,7 @@ public:
 
     virtual void Update() override;
 
-    virtual void Delete() override;
+    virtual ULONG Release() override;
 
     void PreDraw();
     void Draw();
@@ -40,6 +40,8 @@ public:
     void SetRenderTargetView(UINT num, D3D12_CPU_DESCRIPTOR_HANDLE* rtv, D3D12_CPU_DESCRIPTOR_HANDLE* dsv = nullptr);
     void CloseCommandList();
     void ExecuteCommandList();
+
+    UINT RTVDescriptorSize() { return _rtvDescriptorSize; }
 
 private:
     void CreateD3DDevice();

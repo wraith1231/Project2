@@ -27,7 +27,7 @@ D3D::D3D()
 
 D3D::~D3D()
 {
-	Delete();
+	Release();
 }
 
 void D3D::Init()
@@ -61,7 +61,7 @@ void D3D::Update()
 
 }
 
-void D3D::Delete()
+ULONG D3D::Release()
 {
 	_commandAllocator->Release();
 	_commandQueue->Release();
@@ -82,6 +82,9 @@ void D3D::Delete()
 #ifdef _DEBUG
 	_debugController->Release();
 #endif // _DEBUG
+
+
+	return 0;
 }
 
 void D3D::PreDraw()

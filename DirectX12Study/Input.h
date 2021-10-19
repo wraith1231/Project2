@@ -10,7 +10,7 @@ public:
     // Singletons을(를) 통해 상속됨
     virtual void Init() override;
     virtual void Update() override;
-    virtual void Delete() override;
+    virtual ULONG Release() override;
 
     LRESULT MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 

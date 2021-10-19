@@ -29,6 +29,24 @@
     <Filter Include="PostProcess\Code">
       <UniqueIdentifier>{43223fa5-274a-464d-9ac6-7f570a3802f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{0c4d1e87-22ac-436f-b265-604f5a6258fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Header">
+      <UniqueIdentifier>{3667931b-9c89-404d-b521-62e4a16bb98e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Code">
+      <UniqueIdentifier>{49c2133d-b341-44ab-b5fd-ec15ecb74026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{43d1e236-18c1-4ce9-8824-c09e71248947}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Header">
+      <UniqueIdentifier>{caf44a89-baad-4af8-bd61-6892b3c58160}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Code">
+      <UniqueIdentifier>{348b5f15-7129-4b46-8521-932279b2fcbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SingletonManager.h">
@@ -74,10 +92,16 @@
     <ClInclude Include="External\d3dx12.h">
       <Filter>External</Filter>
     </ClInclude>
-    <ClInclude Include="RenderManager.h">
-      <Filter>System\Header</Filter>
-    </ClInclude>
     <ClInclude Include="PostProcess.h">
+      <Filter>PostProcess\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Scene\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Model\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
       <Filter>PostProcess\Header</Filter>
     </ClInclude>
   </ItemGroup>
@@ -113,10 +137,16 @@
     <ClCompile Include="External\d3dUtil.cpp">
       <Filter>External</Filter>
     </ClCompile>
-    <ClCompile Include="RenderManager.cpp">
-      <Filter>System\Code</Filter>
-    </ClCompile>
     <ClCompile Include="PostProcess.cpp">
+      <Filter>PostProcess\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Scene\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Model\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
       <Filter>PostProcess\Code</Filter>
     </ClCompile>
   </ItemGroup>

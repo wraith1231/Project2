@@ -23,7 +23,7 @@ public:
 	int Run();
 	virtual void Init() override;
 	virtual void Update() override;
-	virtual void Delete() override;
+	virtual ULONG Release() override;
 
 	WindowDesc GetDesc() { return _desc; }
 	void SetDesc(WindowDesc desc);

@@ -139,8 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="D3D.h" />
-    <ClInclude Include="d3dx12.h" />
     <ClInclude Include="External\d3dUtil.h" />
     <ClInclude Include="External\d3dx12.h" />
     <ClInclude Include="External\DDSTextureLoader.h" />
@@ -166,6 +166,7 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="D3D.cpp" />
     <ClCompile Include="External\d3dUtil.cpp" />
     <ClCompile Include="External\DDSTextureLoader.cpp" />

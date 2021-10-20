@@ -43,6 +43,8 @@ public:
 
     UINT RTVDescriptorSize() { return _rtvDescriptorSize; }
 
+    void SetPrimitiveTopology(D3D12_PRIMITIVE_TOPOLOGY topology);
+
 private:
     void CreateD3DDevice();
     void CreateFence();

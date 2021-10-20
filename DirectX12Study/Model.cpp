@@ -8,6 +8,13 @@
 
 Model::Model()
 {
+	_preWorldPosition = XMVectorZero();
+	_worldPosition = XMVectorZero();
+	_postWorldPosition = XMVectorZero();
+
+	_scale = XMVectorZero();
+	_rotate = XMVectorZero();
+	_direction = XMVectorZero();
 }
 
 Model::~Model()

@@ -33,6 +33,8 @@ public:
 
 	void SetPaused(bool paused);
 
+	float GetAspectRatio();
+
 private:
 	WindowDesc _desc;
 };

@@ -150,3 +150,8 @@ void Window::SetPaused(bool paused)
 {
 	_desc.Paused = paused;
 }
+
+float Window::GetAspectRatio()
+{
+	return static_cast<float>(_desc.Width) / static_cast<float>(_desc.Height);
+}

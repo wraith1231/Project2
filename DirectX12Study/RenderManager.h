@@ -2,6 +2,7 @@
 #include "Singletons.h"
 
 class PostProcess;
+class Model;
 
 class RenderManager :
     public Singletons

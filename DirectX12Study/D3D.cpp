@@ -93,6 +93,7 @@ void D3D::PreDraw()
 
 	ResourceBarrior(GetCurrentBackBuffer());
 
+	_commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	_commandList->RSSetViewports(1, &_screenViewport);
 	_commandList->RSSetScissorRects(1, &_scissorRect);
 	D3D12_CPU_DESCRIPTOR_HANDLE cbbv = GetCurrentBackBufferView();
@@ -225,6 +226,11 @@ void D3D::LogOutputDisplayModes(IDXGIOutput* output, DXGI_FORMAT format)
 }
 
 #pragma endregion
+
+void D3D::SetPrimitiveTopology(D3D12_PRIMITIVE_TOPOLOGY topology)
+{
+	_commandList->IASetPrimitiveTopology(topology);
+}
 
 void D3D::CreateD3DDevice()
 {

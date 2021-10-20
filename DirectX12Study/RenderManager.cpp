@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Time.h"
 #include "PostProcess.h"
+#include "Model.h"
 
 RenderManager::RenderManager()
 {

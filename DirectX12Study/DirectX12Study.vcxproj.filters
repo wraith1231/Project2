@@ -14,12 +14,6 @@
     <Filter Include="System\Code">
       <UniqueIdentifier>{0be4ab30-0067-40cd-b2f6-dfcec80bf833}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Reference">
-      <UniqueIdentifier>{92ce2fae-b903-4e63-8d1f-c6f1d8755ea3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="External">
-      <UniqueIdentifier>{3d980249-a32b-4317-9564-5857ed01a69d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PostProcess">
       <UniqueIdentifier>{f10bf381-e6d2-4e04-9f69-d56aa4fc6218}</UniqueIdentifier>
     </Filter>
@@ -47,6 +41,12 @@
     <Filter Include="Model\Code">
       <UniqueIdentifier>{348b5f15-7129-4b46-8521-932279b2fcbb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="_External">
+      <UniqueIdentifier>{3d980249-a32b-4317-9564-5857ed01a69d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Reference">
+      <UniqueIdentifier>{92ce2fae-b903-4e63-8d1f-c6f1d8755ea3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SingletonManager.h">
@@ -57,10 +57,10 @@
     </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Reference\XMMatrixTest.h">
-      <Filter>Reference</Filter>
+      <Filter>_Reference</Filter>
     </ClInclude>
     <ClInclude Include="Reference\XMVectorTest.h">
-      <Filter>Reference</Filter>
+      <Filter>_Reference</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
       <Filter>System\Header</Filter>
@@ -74,23 +74,20 @@
     <ClInclude Include="Input.h">
       <Filter>System\Header</Filter>
     </ClInclude>
-    <ClInclude Include="d3dx12.h">
-      <Filter>리소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="External\DDSTextureLoader.h">
-      <Filter>External</Filter>
+      <Filter>_External</Filter>
     </ClInclude>
     <ClInclude Include="External\MathHelper.h">
-      <Filter>External</Filter>
+      <Filter>_External</Filter>
     </ClInclude>
     <ClInclude Include="External\UploadBuffer.h">
-      <Filter>External</Filter>
+      <Filter>_External</Filter>
     </ClInclude>
     <ClInclude Include="External\d3dUtil.h">
-      <Filter>External</Filter>
+      <Filter>_External</Filter>
     </ClInclude>
     <ClInclude Include="External\d3dx12.h">
-      <Filter>External</Filter>
+      <Filter>_External</Filter>
     </ClInclude>
     <ClInclude Include="PostProcess.h">
       <Filter>PostProcess\Header</Filter>
@@ -104,6 +101,9 @@
     <ClInclude Include="RenderManager.h">
       <Filter>PostProcess\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Scene\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -114,10 +114,10 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Reference\XMMatrixTest.cpp">
-      <Filter>Reference</Filter>
+      <Filter>_Reference</Filter>
     </ClCompile>
     <ClCompile Include="Reference\XMVectorTest.cpp">
-      <Filter>Reference</Filter>
+      <Filter>_Reference</Filter>
     </ClCompile>
     <ClCompile Include="Time.cpp">
       <Filter>System\Code</Filter>
@@ -129,13 +129,13 @@
       <Filter>System\Code</Filter>
     </ClCompile>
     <ClCompile Include="External\DDSTextureLoader.cpp">
-      <Filter>External</Filter>
+      <Filter>_External</Filter>
     </ClCompile>
     <ClCompile Include="External\MathHelper.cpp">
-      <Filter>External</Filter>
+      <Filter>_External</Filter>
     </ClCompile>
     <ClCompile Include="External\d3dUtil.cpp">
-      <Filter>External</Filter>
+      <Filter>_External</Filter>
     </ClCompile>
     <ClCompile Include="PostProcess.cpp">
       <Filter>PostProcess\Code</Filter>
@@ -149,13 +149,16 @@
     <ClCompile Include="RenderManager.cpp">
       <Filter>PostProcess\Code</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Scene\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Reference\HOW_TO_DIrectXMath.txt">
-      <Filter>Reference</Filter>
+      <Filter>_Reference</Filter>
     </Text>
     <Text Include="Reference\WhatsThis.txt">
-      <Filter>Reference</Filter>
+      <Filter>_Reference</Filter>
     </Text>
   </ItemGroup>
 </Project>

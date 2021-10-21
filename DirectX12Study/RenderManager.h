@@ -1,20 +1,17 @@
 #pragma once
-#include "Singletons.h"
 
 class PostProcess;
 class Model;
 
-class RenderManager :
-    public Singletons
+class RenderManager
 {
 public:
     RenderManager();
     ~RenderManager();
 
-    // Singletons을(를) 통해 상속됨
-    virtual void Init() override;
-    virtual void Update() override;
-    virtual ULONG Release() override;
+    void Init();
+    void Update();
+    ULONG Release();
 
     void AddPostProcess(string name);
     void DeletePostProcess(string name);

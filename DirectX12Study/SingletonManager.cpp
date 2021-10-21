@@ -5,7 +5,6 @@
 #include "Time.h"
 #include "Input.h"
 #include "D3D.h"
-#include "Camera.h"
 
 SingletonManager::SingletonManager()
 {
@@ -18,7 +17,6 @@ SingletonManager::~SingletonManager()
 
 void SingletonManager::Init()
 {
-	//_Singletons["D3D"]->Init();
 }
 
 void SingletonManager::Update()
@@ -59,12 +57,10 @@ SingletonManager* SingletonManager::Singleton()
 	if (h_instance == nullptr)
 	{
 		h_instance = new SingletonManager();
-
 		h_instance->AddSingleton("Window", new Window());
 		h_instance->AddSingleton("Time", new Time());
 		h_instance->AddSingleton("Input", new Input());
 		h_instance->AddSingleton("D3D", new D3D());
-		h_instance->AddSingleton("Camera", new Camera());
 	}
 
 	return h_instance;

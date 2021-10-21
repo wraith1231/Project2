@@ -1,8 +1,9 @@
 #include "stdafx.h"
+#include "Camera.h"
 #include "SingletonManager.h"
+#include "SceneManager.h"
 #include "Time.h"
 #include "Input.h"
-#include "Camera.h"
 #include "Window.h"
 
 Camera::Camera()

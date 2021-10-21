@@ -1,16 +1,14 @@
 #pragma once
-#include "Singletons.h"
-class Camera :
-    public Singletons
+
+class Camera
 {
 public:
     Camera();
     ~Camera();
 
-    // Singletons을(를) 통해 상속됨
-    virtual void Init() override;
-    virtual void Update() override;
-    virtual ULONG Release() override;
+    void Init();
+    void Update();
+    ULONG Release();
 
 private:
     XMVECTOR _cameraPosition;

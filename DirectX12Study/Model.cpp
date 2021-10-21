@@ -8,6 +8,16 @@
 
 Model::Model()
 {
+	Init();
+}
+
+Model::~Model()
+{
+	Release();
+}
+
+void Model::Init()
+{
 	_preWorldPosition = XMVectorZero();
 	_worldPosition = XMVectorZero();
 	_postWorldPosition = XMVectorZero();
@@ -17,6 +27,18 @@ Model::Model()
 	_direction = XMVectorZero();
 }
 
-Model::~Model()
+void Model::PreMove()
+{
+}
+
+void Model::Update()
+{
+}
+
+void Model::Render()
+{
+}
+
+void Model::Release()
 {
 }

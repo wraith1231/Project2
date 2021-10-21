@@ -3,6 +3,7 @@
 #include "SingletonManager.h"
 #include "Time.h"
 #include "D3D.h"
+#include "SceneManager.h"
 
 Window::Window()
 {
@@ -57,6 +58,7 @@ bool Window::Init(int show)
 	UpdateWindow(_desc.ghMainWnd);
 
 	Singleton<D3D>()->Init();
+	SceneManager::Scene();
 	return true;
 }
 
@@ -105,7 +107,9 @@ int Window::Run()
 			if (_desc.Paused == false)
 			{
 				SingletonManager::Singleton()->Update();
+				SceneManager::Scene()->Update();
 
+				SceneManager::Scene()->Render();
 				Singleton<D3D>()->PreDraw();
 				Singleton<D3D>()->Draw();
 			}

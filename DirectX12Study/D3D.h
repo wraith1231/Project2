@@ -44,6 +44,8 @@ public:
     UINT RTVDescriptorSize() { return _rtvDescriptorSize; }
 
     void SetPrimitiveTopology(D3D12_PRIMITIVE_TOPOLOGY topology);
+    ID3D12Device* GetDevice();
+    UINT RTVDescriptorSize() { return _rtvDescriptorSize; }
 
 private:
     void CreateD3DDevice();

@@ -232,6 +232,11 @@ void D3D::SetPrimitiveTopology(D3D12_PRIMITIVE_TOPOLOGY topology)
 	_commandList->IASetPrimitiveTopology(topology);
 }
 
+ID3D12Device* D3D::GetDevice()
+{
+	return _d3dDevice.Get();
+}
+
 void D3D::CreateD3DDevice()
 {
 	DWORD dxgiFactoryFlag = 0;

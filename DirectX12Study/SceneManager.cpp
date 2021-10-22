@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SceneManager.h"
+#include "SingletonManager.h"
 #include "RenderManager.h"
 #include "Time.h"
 #include "PostProcess.h"
@@ -22,6 +23,7 @@ void SceneManager::Init()
 {
 	_renderManager = new RenderManager();
 	_camera = new Camera();
+	_gameSpeed = Singleton<Time>()->GameSpeed();
 }
 
 ULONG SceneManager::Release()

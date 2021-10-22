@@ -1,4 +1,7 @@
 #pragma once
+
+class Model;
+
 class PostProcess
 {
 public:
@@ -20,6 +23,6 @@ protected:
 
 	DXGI_FORMAT _ppFormat;
 	
-
+	vector<Model*> _objects;
 };
 

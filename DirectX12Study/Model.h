@@ -22,5 +22,7 @@ private:
 
 	XMVECTOR _direction;
 
+	float _speed;
+	const float* _gameSpeed;
 };
 

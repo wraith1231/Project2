@@ -23,10 +23,15 @@ public:
 
 	float GetRunningTime() { return _runningTime; }
 
+	const float* GameSpeed() { return _pGameSpeed; }
+
 private:
 	float _deltaTime;
 	ch::time_point<ch::high_resolution_clock> _startTime;
 	ch::time_point<ch::high_resolution_clock> _lastTime;
 	float _runningTime;
+
+	float* _pGameSpeed;
+	float _gameSpeed;
 };
 

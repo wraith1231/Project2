@@ -26,6 +26,7 @@ private:
 	Camera* _camera;
 
 	vector<Model*> _objects;
+	const float* _gameSpeed;
 };
 
 static SceneManager* h_sInstance = 0;

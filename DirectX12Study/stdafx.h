@@ -23,8 +23,8 @@
 #include <d3dtypes.h>
 #include <dxgi.h>
 #include <dxgicommon.h>
-#include "External/d3dUtil.h"
 
+#include "External/d3dUtil.h"
 #include "External/d3dx12.h"
 
 using namespace std;

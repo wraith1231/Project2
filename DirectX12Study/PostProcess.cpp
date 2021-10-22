@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PostProcess.h"
 #include "RenderManager.h"
+#include "SingletonManager.h"
 #include "Window.h"
 #include "Time.h"
 #include "D3D.h"
@@ -17,6 +18,23 @@ PostProcess::~PostProcess()
 
 void PostProcess::Init()
 {
+	D3D12_DESCRIPTOR_HEAP_DESC desc;
+	desc.NumDescriptors = 1;
+	desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
+	desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	desc.NodeMask = 0;
+
+	ID3D12Device* device = Singleton<D3D>()->GetDevice();
+	ThrowIfFailed(device->CreateDescriptorHeap(
+		&desc,
+		IID_PPV_ARGS(_heap.GetAddressOf())
+	));
+
+	CD3DX12_CPU_DESCRIPTOR_HANDLE heapHandle(_heap->GetCPUDescriptorHandleForHeapStart());
+
+	device->CreateRenderTargetView(_mainBuffer.Get(),
+		nullptr, heapHandle);
+	heapHandle.Offset(1, Singleton<D3D>()->RTVDescriptorSize());
 	/*
 	* {
 		//rtv

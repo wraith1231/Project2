@@ -17,6 +17,8 @@ void Time::Init()
 	_startTime = ch::high_resolution_clock::now();
 	_deltaTime = 0;
 	_lastTime = ch::high_resolution_clock::now();
+	_pGameSpeed = &_gameSpeed;
+	_gameSpeed = 1.0f;
 }
 
 void Time::Update()
@@ -29,5 +31,6 @@ void Time::Update()
 
 ULONG Time::Release()
 {
+
 	return 0;
 }

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Model.h"
 #include "SceneManager.h"
+#include "SingletonManager.h"
 #include "RenderManager.h"
 #include "D3D.h"
 #include "Time.h"
@@ -25,6 +26,9 @@ void Model::Init()
 	_scale = XMVectorZero();
 	_rotate = XMVectorZero();
 	_direction = XMVectorZero();
+
+	_speed = 1.0f;
+	_gameSpeed = Singleton<Time>()->GameSpeed();
 }
 
 void Model::PreMove()

@@ -8,6 +8,7 @@
 #include "D3D.h"
 #include "Window.h"
 #include "Camera.h"
+#include "TestModel.h"
 
 SceneManager::SceneManager()
 {

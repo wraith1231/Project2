@@ -39,3 +39,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 #pragma once 
 ostream& XM_CALLCONV operator<<(ostream& os, FXMVECTOR v);
 ostream& XM_CALLCONV operator<<(ostream& os, FXMMATRIX m);
+
+struct Vertex
+{
+	XMFLOAT4 Pos;
+	XMFLOAT4 Color;
+	XMFLOAT2 UV;
+};

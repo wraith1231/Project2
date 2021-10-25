@@ -6,6 +6,7 @@
 #include "D3D.h"
 #include "Time.h"
 #include "Input.h"
+#include "Material.h"
 
 Model::Model()
 {

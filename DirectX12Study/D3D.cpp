@@ -108,7 +108,7 @@ void D3D::PreDraw()
 void D3D::Draw()
 {
 	ResourceBarrior(GetCurrentBackBuffer());
-
+	
 	CloseCommandList();
 
 	ExecuteCommandList();

@@ -147,6 +147,7 @@
     <ClInclude Include="External\MathHelper.h" />
     <ClInclude Include="External\UploadBuffer.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="PostProcess.h" />
     <ClInclude Include="Reference\XMMatrixTest.h">
@@ -162,6 +163,7 @@
     <ClInclude Include="SingletonManager.h" />
     <ClInclude Include="Singletons.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TestModel.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -173,6 +175,7 @@
     <ClCompile Include="External\MathHelper.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Material.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="PostProcess.cpp" />
     <ClCompile Include="Reference\XMMatrixTest.cpp">
@@ -186,6 +189,7 @@
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SingletonManager.cpp" />
+    <ClCompile Include="TestModel.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

@@ -47,6 +47,9 @@
     <Filter Include="_Reference">
       <UniqueIdentifier>{92ce2fae-b903-4e63-8d1f-c6f1d8755ea3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="_Shader">
+      <UniqueIdentifier>{eb7c638f-fd47-4b7b-be45-4ef2f149e448}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SingletonManager.h">
@@ -104,6 +107,12 @@
     <ClInclude Include="Camera.h">
       <Filter>Scene\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Model\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TestModel.h">
+      <Filter>Model\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -151,6 +160,12 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Scene\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Model\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="TestModel.cpp">
+      <Filter>Model\Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

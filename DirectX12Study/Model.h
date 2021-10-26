@@ -1,5 +1,6 @@
 #pragma once
 class Material;
+class ModelNode;
 
 class Model
 {
@@ -27,9 +28,6 @@ protected:
 	float _speed;
 	const float* _gameSpeed;
 
-	Material* _material;
-
-	vector<Vertex> _vertices;
-	vector<UINT> _indices;
+	ModelNode* _coreNode;
 };
 

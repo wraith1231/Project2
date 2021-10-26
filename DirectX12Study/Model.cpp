@@ -7,6 +7,7 @@
 #include "Time.h"
 #include "Input.h"
 #include "Material.h"
+#include "ModelNode.h"
 
 Model::Model()
 {
@@ -30,10 +31,15 @@ void Model::Init()
 
 	_speed = 1.0f;
 	_gameSpeed = Singleton<Time>()->GameSpeed();
+
+	_coreNode = new ModelNode();
 }
 
 void Model::PreMove()
 {
+	_preWorldPosition = _worldPosition;
+	_worldPosition = _postWorldPosition;
+
 }
 
 void Model::Update()

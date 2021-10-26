@@ -149,6 +149,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelNode.h" />
     <ClInclude Include="PostProcess.h" />
     <ClInclude Include="Reference\XMMatrixTest.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -177,6 +178,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelNode.cpp" />
     <ClCompile Include="PostProcess.cpp" />
     <ClCompile Include="Reference\XMMatrixTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -196,6 +198,9 @@
   <ItemGroup>
     <Text Include="Reference\HOW_TO_DIrectXMath.txt" />
     <Text Include="Reference\WhatsThis.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestShader.hlsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

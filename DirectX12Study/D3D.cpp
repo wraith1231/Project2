@@ -58,7 +58,6 @@ void D3D::Init()
 
 void D3D::Update()
 {
-
 }
 
 ULONG D3D::Release()

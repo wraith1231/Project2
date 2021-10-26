@@ -97,5 +97,6 @@ private:
     UINT64 _currentFence = 0;
 
     bool _deviceInit;
+
 };
 

@@ -13,6 +13,7 @@ Material::~Material()
 
 void Material::Init()
 {
+
 }
 
 void Material::Release()

@@ -116,6 +116,9 @@
     <ClInclude Include="ModelNode.h">
       <Filter>Model\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Model\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -171,6 +174,9 @@
       <Filter>Model\Code</Filter>
     </ClCompile>
     <ClCompile Include="ModelNode.cpp">
+      <Filter>Model\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
       <Filter>Model\Code</Filter>
     </ClCompile>
   </ItemGroup>

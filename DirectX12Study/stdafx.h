@@ -42,7 +42,8 @@ ostream& XM_CALLCONV operator<<(ostream& os, FXMMATRIX m);
 
 struct Vertex
 {
-	XMFLOAT4 Pos;
+	XMFLOAT3 Pos;
+	XMFLOAT3 Normal;
 	XMFLOAT4 Color;
 	XMFLOAT2 UV;
 };

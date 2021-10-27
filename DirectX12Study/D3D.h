@@ -46,6 +46,9 @@ public:
     void SetPrimitiveTopology(D3D12_PRIMITIVE_TOPOLOGY topology);
     ID3D12Device* GetDevice();
 
+    wrl::ComPtr<ID3D12Resource> CreateDefaultBuffer(const void* initData, UINT64 byteSize,
+        wrl::ComPtr<ID3D12Resource>& uploadBuffer);
+
 private:
     void CreateD3DDevice();
     void CreateFence();

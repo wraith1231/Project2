@@ -1,6 +1,7 @@
 #pragma once
 
 class Model;
+class Shader;
 
 class PostProcess
 {
@@ -24,5 +25,6 @@ protected:
 	DXGI_FORMAT _ppFormat;
 	
 	vector<Model*> _objects;
+	Shader* _shader;
 };
 

@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Time.h"
 #include "D3D.h"
+#include "Shader.h"
 
 PostProcess::PostProcess()
 {
@@ -35,6 +36,7 @@ void PostProcess::Init()
 	device->CreateRenderTargetView(_mainBuffer.Get(),
 		nullptr, heapHandle);
 	heapHandle.Offset(1, Singleton<D3D>()->RTVDescriptorSize());
+	_shader = new Shader();
 	/*
 	* {
 		//rtv

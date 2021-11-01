@@ -1,5 +1,6 @@
 #include "Material.h"
 #include "stdafx.h"
+#include "Shader.h"
 
 Material::Material()
 {
@@ -13,7 +14,7 @@ Material::~Material()
 
 void Material::Init()
 {
-
+	_shader = new Shader();
 }
 
 void Material::Release()

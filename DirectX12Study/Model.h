@@ -16,6 +16,8 @@ public:
 	virtual void Release();
 
 protected:
+	string _modelName;
+
 	XMVECTOR _preWorldPosition;
 	XMVECTOR _worldPosition;
 	XMVECTOR _postWorldPosition;

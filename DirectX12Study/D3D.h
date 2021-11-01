@@ -49,6 +49,9 @@ public:
     wrl::ComPtr<ID3D12Resource> CreateDefaultBuffer(const void* initData, UINT64 byteSize,
         wrl::ComPtr<ID3D12Resource>& uploadBuffer);
 
+    void SetVertexBufferView(vector<D3D12_VERTEX_BUFFER_VIEW> views);
+    void SetIndexBufferView(D3D12_INDEX_BUFFER_VIEW view);
+
 private:
     void CreateD3DDevice();
     void CreateFence();

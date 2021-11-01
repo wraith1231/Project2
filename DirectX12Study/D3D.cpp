@@ -82,7 +82,6 @@ ULONG D3D::Release()
 	_debugController->Release();
 #endif // _DEBUG
 
-
 	return 0;
 }
 
@@ -276,6 +275,18 @@ wrl::ComPtr<ID3D12Resource> D3D::CreateDefaultBuffer(const void* initData, UINT6
 	_commandList->ResourceBarrier(1, &temp3);
 
 	return retBuffer;
+}
+
+void D3D::SetVertexBufferView(vector<D3D12_VERTEX_BUFFER_VIEW> views)
+{
+	int size = views.size();
+	for(int i = 1; i <= size; i++)
+		_commandList->IASetVertexBuffers(0, i, &views[i-1]);
+}
+
+void D3D::SetIndexBufferView(D3D12_INDEX_BUFFER_VIEW view)
+{
+	_commandList->IASetIndexBuffer(&view);
 }
 
 void D3D::CreateD3DDevice()

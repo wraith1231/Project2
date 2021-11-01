@@ -1,4 +1,7 @@
 #pragma once
+
+class Shader;
+
 class Material
 {
 public:
@@ -10,7 +13,7 @@ public:
 	void Render();
 
 private:
-	
+	Shader* _shader;
 
 };
 

@@ -105,6 +105,7 @@ void ModelNode::CreateBuffer()
 	_indexBufferView.BufferLocation = _indexBuffer->GetGPUVirtualAddress();
 	_indexBufferView.Format = DXGI_FORMAT_R16_UINT;
 	_indexBufferView.SizeInBytes = _indices.size() * sizeof(UINT);
+
 }
 
 ModelNode* ModelNode::GetChild(string name)

@@ -25,8 +25,6 @@ public:
     void LogAdapterOutputs(IDXGIAdapter* adapter);
     void LogOutputDisplayModes(IDXGIOutput* output, DXGI_FORMAT format);
 
-    bool DeviceInit() { return _deviceInit; }
-
     D3D12_CPU_DESCRIPTOR_HANDLE GetCurrentBackBufferView() const;
     D3D12_CPU_DESCRIPTOR_HANDLE GetDepthStencilView() const;
     ID3D12Resource* GetCurrentBackBuffer() const;
@@ -101,8 +99,6 @@ private:
     D3D12_VIEWPORT _screenViewport;
 
     UINT64 _currentFence = 0;
-
-    bool _deviceInit;
 
 };
 

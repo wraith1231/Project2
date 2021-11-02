@@ -6,12 +6,11 @@ public:
 	~Shader();
 
 	void Init();
-	void Render(void* vertices, UINT64 vertexByte);
+	void Render();
 	void Release();
 
+
 private:
-	wrl::ComPtr<ID3D12Resource> _vertexBuffer;
-	wrl::ComPtr<ID3D12Resource> _uploadBuffer;
 
 };
 

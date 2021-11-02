@@ -119,6 +119,9 @@
     <ClInclude Include="Shader.h">
       <Filter>Model\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Scene\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -178,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Model\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Scene\Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

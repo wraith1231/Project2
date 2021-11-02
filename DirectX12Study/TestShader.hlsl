@@ -17,8 +17,17 @@ struct VertexOutput
     float4 color : COLOR;
 };
 
-void VS(VertexInput ver, out VertexOutput output)
+VertexOutput TestVS(VertexInput ver)
 {
+    VertexOutput output;
+    
     output.posH = mul(float4(ver.pos, 1.0f), worldViewProj);
     output.color = ver.color;
+    
+    return output;
+}
+
+float4 TestPS(VertexOutput input) : SV_Target
+{
+    return input.color;
 }

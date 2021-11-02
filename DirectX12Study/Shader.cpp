@@ -17,14 +17,14 @@ void Shader::Init()
 {
 }
 
-void Shader::Render(void* vertices, UINT64 vertexByte)
+void Shader::Render()
 {
-	_vertexBuffer = Singleton<D3D>()->CreateDefaultBuffer(vertices, vertexByte, _uploadBuffer);
+
 }
+
 
 void Shader::Release()
 {
-	_vertexBuffer->Release();
-	_uploadBuffer->Release();
+
 }
 

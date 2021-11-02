@@ -19,7 +19,6 @@ D3D::D3D()
 
 	_currentFence = 0;
 
-	_deviceInit = false;
 	_backBufferFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
 	_depthStencilFormat = DXGI_FORMAT_D24_UNORM_S8_UINT;
 	_currentBackBuffer = 0;
@@ -52,12 +51,11 @@ void D3D::Init()
 	CreateDescriptorHeap();
 	Resize(Singleton<Window>()->GetDesc().Width,
 		Singleton<Window>()->GetDesc().Height);
-
-	_deviceInit = true;
 }
 
 void D3D::Update()
 {
+
 }
 
 ULONG D3D::Release()

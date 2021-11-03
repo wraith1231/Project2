@@ -26,6 +26,7 @@
 
 #include "External/d3dUtil.h"
 #include "External/d3dx12.h"
+#include "d3dUtil.h"
 
 using namespace std;
 using namespace DirectX;
